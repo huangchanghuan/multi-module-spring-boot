@@ -16,6 +16,5 @@ public class AuthInteceptor extends HandlerInterceptorAdapter
         System.out.println("URI: " + request.getRequestURI());
         return true;
     }
-    
 
 }
