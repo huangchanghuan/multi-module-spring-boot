@@ -1,9 +1,12 @@
 package com.yimi.product.web;
 
+import com.yimi.product.entity.SysUser;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -11,8 +14,14 @@ import java.util.Map;
 @Controller
 public class HomeController {
     @RequestMapping({"/","/index"})
-    public String index(){
-        return"/index";
+    @ResponseBody
+    public SysUser index(){
+        System.out.println("登录成功!");
+        //获取当前用户信息
+        SysUser user= (SysUser) SecurityUtils.getSubject().getPrincipal();
+        System.out.println("获取成功登录后的用户名:"+user.toString());
+        //返回json格式
+        return new SysUser();
     }
 
     @RequestMapping("/login")
