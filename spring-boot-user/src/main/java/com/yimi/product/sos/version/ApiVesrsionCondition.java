@@ -13,7 +13,7 @@ public class ApiVesrsionCondition implements RequestCondition<ApiVesrsionConditi
 
     private int apiVersion;
 
-    public ApiVesrsionCondition(int apiVersion){
+    public ApiVesrsionCondition(int apiVersion) {
         this.apiVersion = apiVersion;
     }
 
@@ -26,9 +26,9 @@ public class ApiVesrsionCondition implements RequestCondition<ApiVesrsionConditi
     public ApiVesrsionCondition getMatchingCondition(HttpServletRequest request) {
         System.out.println("====getMatchingCondition");
         Matcher m = VERSION_PREFIX_PATTERN.matcher(request.getRequestURL());
-        if(m.find()){
+        if (m.find()) {
             Integer version = Integer.valueOf(m.group(1));//路径的版本号
-            if(version >= this.apiVersion) // 如果请求的版本号大于配置版本号， 则满足
+            if (version >= this.apiVersion) // 如果请求的版本号大于配置版本号， 则满足
                 return this;
         }
         return null;
@@ -48,10 +48,10 @@ public class ApiVesrsionCondition implements RequestCondition<ApiVesrsionConditi
 
     public static void main(String[] args) {
         Matcher m = VERSION_PREFIX_PATTERN.matcher("http://localhost:8080/appserver/v2/time/now");
-        if(m.find()){
+        if (m.find()) {
             Integer version = Integer.valueOf(m.group(1));//路径的版本号
             System.out.println(version);
-        }else {
+        } else {
             System.out.println("no");
         }
 

@@ -13,61 +13,93 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
- * 
  * @author Peter  2016-9-3下午5:02:48
- *
  */
 @Controller
 @ApiVersion(001)
 @RequestMapping("/{version}/user")//url:/项目/模块/资源/{id}/细分  seckill/list
 public class UserControllerV001 {
-	private final static Logger logger = LoggerFactory.getLogger(UserControllerV001.class);
+    private final static Logger logger = LoggerFactory.getLogger(UserControllerV001.class);
 
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
 
-	/**
-	 * 添加成功,返回用户对象
-	 * @return
-	 */
-	@RequestMapping(value="/add" ,method=RequestMethod.GET)
-	@ResponseBody
-	public ServiceResult<SysUser> time(){
-		logger.info("执行用户添加");
-		SysUser sysUser=userService.getUser(1l);
-		return new ServiceResult<SysUser>(true,sysUser);
-	}
+    /**
+     * 查询单个用户
+     *
+     * @return
+     */
+    @RequestMapping(value = "/searchById", method = RequestMethod.GET)
+    @ResponseBody
+    public ServiceResult<SysUser> searchById(long uid) {
+        logger.info("根据id查询用户{}", uid);
+        SysUser sysUser = userService.getUser(uid);
+        return new ServiceResult<SysUser>(true, sysUser);
+    }
 
-	/**
-	 * 添加成功,返回用户对象
-	 * @return
-	 */
-	@RequestMapping(value="/updateState" ,method=RequestMethod.GET)
-	@ResponseBody
-	public ServiceResult<Long> updateState(){
-		logger.info("执行用户添加");
-		SysUser sysUser = new SysUser();
-		sysUser.setUid(1);
-		long result= 0;
-		try {
-			result = userService.updateState(sysUser);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return new ServiceResult<Long>(true,result);
-	}
-	/**
-	 * 添加成功,返回用户对象
-	 * @return
-	 */
-	@RequestMapping(value="/updateState1" ,method=RequestMethod.GET)
-	@ResponseBody
-	public ServiceResult<Long> updateState1(){
-		logger.info("执行用户添加");
-		SysUser sysUser = new SysUser();
-		sysUser.setUid(2);
-		long result=userService.updateState1(sysUser);
-		return new ServiceResult<Long>(true,result);
-	}
+    /**
+     * 查询所有用户
+     *
+     * @return
+     */
+    @RequestMapping(value = "/searchAll", method = RequestMethod.GET)
+    @ResponseBody
+    public ServiceResult<List<SysUser>> searchAll() {
+        logger.info("查询所有用户");
+        List<SysUser> sysUsers = userService.getUsers();
+        return new ServiceResult<List<SysUser>>(true, sysUsers);
+    }
+
+    /**
+     * 添加对象 name username, password
+     *
+     * @return
+     */
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @ResponseBody
+    public ServiceResult<Boolean> save(SysUser sysUser) {
+        logger.info("执行用户添加");
+        sysUser.setState((byte) 1);
+        boolean boo = userService.save(sysUser);
+        return new ServiceResult<Boolean>(true, boo);
+    }
+
+
+    /**
+     * 添加成功,返回用户对象
+     *
+     * @return
+     */
+    @RequestMapping(value = "/updateState", method = RequestMethod.GET)
+    @ResponseBody
+    public ServiceResult<Long> updateState() {
+        logger.info("执行用户添加");
+        SysUser sysUser = new SysUser();
+        sysUser.setUid(1);
+        long result = 0;
+        try {
+            result = userService.updateState(sysUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ServiceResult<Long>(true, result);
+    }
+
+    /**
+     * 添加成功,返回用户对象
+     *
+     * @return
+     */
+    @RequestMapping(value = "/updateState1", method = RequestMethod.GET)
+    @ResponseBody
+    public ServiceResult<Long> updateState1() {
+        logger.info("执行用户添加");
+        SysUser sysUser = new SysUser();
+        sysUser.setUid(2);
+        long result = userService.updateState1(sysUser);
+        return new ServiceResult<Long>(true, result);
+    }
 }

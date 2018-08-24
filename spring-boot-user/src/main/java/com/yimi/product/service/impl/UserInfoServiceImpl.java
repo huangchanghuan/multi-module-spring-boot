@@ -18,18 +18,21 @@ public class UserInfoServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private UserService userService;
+
     public List<SysUser> getUsers() {
-        List<SysUser> users=userMapper.getAll();
+        List<SysUser> users = userMapper.getAll();
         return users;
     }
 
     public SysUser getUser(Long id) {
-        SysUser user=userMapper.getOne(id);
+        SysUser user = userMapper.getOne(id);
         return user;
     }
 
-    public void save(SysUser user) {
-        userMapper.insert(user);
+    public boolean save(SysUser user) {
+        return userMapper.insert(user);
     }
 
     public void update(SysUser user) {
@@ -42,43 +45,43 @@ public class UserInfoServiceImpl implements UserService {
 
     /**
      * 测试乐观锁/悲观锁
+     *
      * @param user
      * @return
      */
-    @Transactional(propagation = Propagation.REQUIRES_NEW,rollbackFor=Exception.class)
+    @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class, readOnly = true)
     public long updateState(SysUser user) throws Exception {
-        long num=userMapper.updateState(user);
-        System.out.println("A事务返回更新行数:"+num);
+        long num = userMapper.updateState(user);
+        System.out.println("A事务返回更新行数:" + num);
 
-        long num1=updateState1(user);
+        long num1 = userService.updateState1(user);
 
         System.out.println("开始记录日志");
-        //抛出异常
-        if (true)
-        throw new Exception("");
+//        //抛出异常
+//        if (true)
+//        throw new Exception("");
         return num;
     }
 
 
     /**
      * 发送红包
+     *
      * @param user
      * @return
      */
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public long updateState1(SysUser user) {
         user.setUid(2);
-        long num=userMapper.updateState1(user);
-        System.out.println("A事务返回更新行数:"+num);
+        long num = userMapper.updateState1(user);
+        System.out.println("A事务返回更新行数:" + num);
         return num;
     }
 
 
-
-
-
     /**
      * 根据用户id查询
+     *
      * @param userId
      * @return
      */
@@ -87,7 +90,6 @@ public class UserInfoServiceImpl implements UserService {
         System.out.println("UserInfoServiceImpl.getOne()");
         return userMapper.getOne(userId);
     }
-
 
 
 }

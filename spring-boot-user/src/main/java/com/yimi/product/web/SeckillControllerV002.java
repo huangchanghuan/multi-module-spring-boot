@@ -13,28 +13,26 @@ import java.util.Date;
 
 
 /**
- * 
  * @author Peter  2016-9-3下午5:02:48
- *
  */
 @Controller
 @ApiVersion(002)
 @RequestMapping("/{version}/seckill")//url:/项目/模块/资源/{id}/细分  seckill/list
 public class SeckillControllerV002 {
 
-	@RequestMapping(value="/time/now",method= RequestMethod.GET)
-	@ResponseBody
-	public ServiceResult<Long> time(){
-		System.out.println("版本:002");
-		Date now=new Date();
-		return new ServiceResult<Long>(true,now.getTime());
-	}
+    @RequestMapping(value = "/time/now", method = RequestMethod.GET)
+    @ResponseBody
+    public ServiceResult<Long> time() {
+        System.out.println("版本:002");
+        Date now = new Date();
+        return new ServiceResult<Long>(true, now.getTime());
+    }
 
-	@RequestMapping(value="/list",method=RequestMethod.GET)
-	public String List(Model model){
-		//获取列表页
-		model.addAttribute("list","这是list");
-		//List.jsp+model=ModelAndView
-		return "list";//  /WEB-INF/jsp/"list".jsp
-	}
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String List(Model model) {
+        //获取列表页
+        model.addAttribute("list", "这是list");
+        //List.jsp+model=ModelAndView
+        return "list";//  /WEB-INF/jsp/"list".jsp
+    }
 }

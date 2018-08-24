@@ -8,35 +8,27 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 public interface UserMapper {
-	
-	@Select("SELECT * FROM sys_user")
-	@Results({
-		@Result(property = "userSex",  column = "user_sex", javaType = UserSexEnum.class)
-	})
-	List<SysUser> getAll();
-	
-	@Select("SELECT * FROM sys_user WHERE uid = #{id}")
-	@Results({
-		@Result(property = "userSex",  column = "user_sex", javaType = UserSexEnum.class)
-	})
-	SysUser getOne(Long id);
 
+    @Select("SELECT * FROM sys_user")
+    List<SysUser> getAll();
 
-	@Insert("INSERT INTO sys_user(userName,passWord,user_sex) VALUES(#{userName}, #{passWord}, #{userSex})")
-	void insert(SysUser user);
+    @Select("SELECT username,password FROM sys_user WHERE uid = #{id}")
+    SysUser getOne(Long id);
 
-	@Update("UPDATE sys_user SET userName=#{userName},nick_name=#{nickName} WHERE id =#{id}")
-	long update(SysUser user);
+    @Insert("INSERT INTO sys_user(name,password,username,state) VALUES(#{name}, #{password}, #{username},1)")
+    boolean insert(SysUser user);
 
-	@Update("UPDATE sys_user SET state=state+1 WHERE uid =#{uid}")
-	long updateState(SysUser user);
+    @Update("UPDATE sys_user SET userName=#{userName},nick_name=#{nickName} WHERE id =#{id}")
+    long update(SysUser user);
 
-	@Update("UPDATE sys_user SET state=state+1 WHERE uid =#{uid}")
-	long updateState1(SysUser user);
+    @Update("UPDATE sys_user SET state=state+1 WHERE uid =#{uid}")
+    long updateState(SysUser user);
 
-	@Delete("DELETE FROM sys_user WHERE id =#{id}")
-	long delete(Long id);
+    @Update("UPDATE sys_user SET state=state+1 WHERE uid =#{uid}")
+    long updateState1(SysUser user);
 
+    @Delete("DELETE FROM sys_user WHERE uid =#{id}")
+    long delete(Long id);
 
 
 }

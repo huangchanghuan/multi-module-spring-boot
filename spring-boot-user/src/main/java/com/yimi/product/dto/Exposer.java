@@ -1,103 +1,102 @@
 package com.yimi.product.dto;
+
 /**
  * 暴露秒杀地址DTO
- * @author Peter
  *
+ * @author Peter
  */
 public class Exposer {
 
-	
-	private boolean exposed;
-	
-	private String md5;
-	
-	private long seckillId;
-	
-	private long now;
-	
-	private long start;
-	
-	private long end;
 
-	
-	
-	@Override
-	public String toString() {
-		return "Exposer [exposed=" + exposed + ", md5=" + md5 + ", seckillId="
-				+ seckillId + ", now=" + now + ", start=" + start + ", end="
-				+ end + "]";
-	}
+    private boolean exposed;
 
-	public Exposer(boolean exposed, String md5, long seckillId) {
-		super();
-		this.exposed = exposed;
-		this.md5 = md5;
-		this.seckillId = seckillId;
-	}
+    private String md5;
 
-	public Exposer(boolean exposed,long seckillId, long now, long start, long end) {
-		super();
-		this.seckillId=seckillId;
-		this.exposed = exposed;
-		this.now = now;
-		this.start = start;
-		this.end = end;
-	}
+    private long seckillId;
 
-	public Exposer(boolean exposed, long seckillId) {
-		super();
-		this.exposed = exposed;
-		this.seckillId = seckillId;
-	}
+    private long now;
 
-	public boolean isExposed() {
-		return exposed;
-	}
+    private long start;
 
-	public void setExposed(boolean exposed) {
-		this.exposed = exposed;
-	}
+    private long end;
 
-	public String getMd5() {
-		return md5;
-	}
 
-	public void setMd5(String md5) {
-		this.md5 = md5;
-	}
+    @Override
+    public String toString() {
+        return "Exposer [exposed=" + exposed + ", md5=" + md5 + ", seckillId="
+                + seckillId + ", now=" + now + ", start=" + start + ", end="
+                + end + "]";
+    }
 
-	public long getSeckillId() {
-		return seckillId;
-	}
+    public Exposer(boolean exposed, String md5, long seckillId) {
+        super();
+        this.exposed = exposed;
+        this.md5 = md5;
+        this.seckillId = seckillId;
+    }
 
-	public void setSeckillId(long seckillId) {
-		this.seckillId = seckillId;
-	}
+    public Exposer(boolean exposed, long seckillId, long now, long start, long end) {
+        super();
+        this.seckillId = seckillId;
+        this.exposed = exposed;
+        this.now = now;
+        this.start = start;
+        this.end = end;
+    }
 
-	public long getNow() {
-		return now;
-	}
+    public Exposer(boolean exposed, long seckillId) {
+        super();
+        this.exposed = exposed;
+        this.seckillId = seckillId;
+    }
 
-	public void setNow(long now) {
-		this.now = now;
-	}
+    public boolean isExposed() {
+        return exposed;
+    }
 
-	public long getStart() {
-		return start;
-	}
+    public void setExposed(boolean exposed) {
+        this.exposed = exposed;
+    }
 
-	public void setStart(long start) {
-		this.start = start;
-	}
+    public String getMd5() {
+        return md5;
+    }
 
-	public long getEnd() {
-		return end;
-	}
+    public void setMd5(String md5) {
+        this.md5 = md5;
+    }
 
-	public void setEnd(long end) {
-		this.end = end;
-	}
-	
-	
-	
+    public long getSeckillId() {
+        return seckillId;
+    }
+
+    public void setSeckillId(long seckillId) {
+        this.seckillId = seckillId;
+    }
+
+    public long getNow() {
+        return now;
+    }
+
+    public void setNow(long now) {
+        this.now = now;
+    }
+
+    public long getStart() {
+        return start;
+    }
+
+    public void setStart(long start) {
+        this.start = start;
+    }
+
+    public long getEnd() {
+        return end;
+    }
+
+    public void setEnd(long end) {
+        this.end = end;
+    }
+
+
 }
