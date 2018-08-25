@@ -13,6 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class InterceptorConfigurerAdapter implements WebMvcConfigurer {
     private final static Logger logger = LoggerFactory.getLogger(InterceptorConfigurerAdapter.class);
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         // addPathPatterns 添加路径

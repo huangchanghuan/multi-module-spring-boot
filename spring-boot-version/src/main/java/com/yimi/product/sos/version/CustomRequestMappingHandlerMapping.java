@@ -12,6 +12,7 @@ import java.util.Comparator;
 public class CustomRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
     /**
      * 类级别的版本注解
+     *
      * @param handlerType
      * @return
      */
@@ -23,6 +24,7 @@ public class CustomRequestMappingHandlerMapping extends RequestMappingHandlerMap
 
     /**
      * 方法级别的版本注解
+     *
      * @param method
      * @return
      */
@@ -31,7 +33,7 @@ public class CustomRequestMappingHandlerMapping extends RequestMappingHandlerMap
         ApiVersion apiVersion = AnnotationUtils.findAnnotation(method, ApiVersion.class);
         return createCondition(apiVersion);
     }
-    
+
     private RequestCondition<ApiVesrsionCondition> createCondition(ApiVersion apiVersion) {
         return apiVersion == null ? null : new ApiVesrsionCondition(apiVersion.value());
     }
@@ -47,27 +49,25 @@ public class CustomRequestMappingHandlerMapping extends RequestMappingHandlerMap
             public int compare(RequestMappingInfo info1, RequestMappingInfo info2) {
                 //先按版本进行排序
                 int versionResult = compareVersion(info1, info2);
-                if (versionResult!= 0) {
+                if (versionResult != 0) {
                     return versionResult;
                 }
                 //再按默认排序
                 return info1.compareTo(info2, request);
             }
+
             //版本条件进行排序
-            private int compareVersion(RequestMappingInfo info1, RequestMappingInfo info2){
-                ApiVesrsionCondition version1= (ApiVesrsionCondition) info1.getCustomCondition();
-                ApiVesrsionCondition version2= (ApiVesrsionCondition) info2.getCustomCondition();
+            private int compareVersion(RequestMappingInfo info1, RequestMappingInfo info2) {
+                ApiVesrsionCondition version1 = (ApiVesrsionCondition) info1.getCustomCondition();
+                ApiVesrsionCondition version2 = (ApiVesrsionCondition) info2.getCustomCondition();
                 //优选按版本排序
-                if (version1== null && version2== null) {
+                if (version1 == null && version2 == null) {
                     return 0;
-                }
-                else if (version1 == null) {
+                } else if (version1 == null) {
                     return 1;
-                }
-                else if (version2 == null) {
+                } else if (version2 == null) {
                     return -1;
-                }
-                else {
+                } else {
                     Class<?> clazz = version1.getClass();
                     Class<?> otherClazz = version2.getClass();
                     if (!clazz.equals(otherClazz)) {

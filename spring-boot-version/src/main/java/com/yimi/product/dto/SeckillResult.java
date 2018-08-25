@@ -1,53 +1,52 @@
 package com.yimi.product.dto;
+
 /**
- * 
  * @author Peter  2016-9-3下午5:35:45
- *
  */
 //所有ajax请求返回的类型，封装json结果
 public class SeckillResult<T> {
-	
-	private boolean success;
-	
-	private T data;
-	
-	private String error;
 
-	public SeckillResult(boolean success, T data) {
-		super();
-		this.success = success;
-		this.data = data;
-	}
+    private boolean success;
 
-	public SeckillResult(boolean success, String error) {
-		super();
-		this.success = success;
-		this.error = error;
-	}
+    private T data;
 
-	public boolean isSuccess() {
-		return success;
-	}
+    private String error;
 
-	public void setSuccess(boolean success) {
-		this.success = success;
-	}
+    public SeckillResult(boolean success, T data) {
+        super();
+        this.success = success;
+        this.data = data;
+    }
 
-	public T getData() {
-		return data;
-	}
+    public SeckillResult(boolean success, String error) {
+        super();
+        this.success = success;
+        this.error = error;
+    }
 
-	public void setData(T data) {
-		this.data = data;
-	}
+    public boolean isSuccess() {
+        return success;
+    }
 
-	public String getError() {
-		return error;
-	}
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
 
-	public void setError(String error) {
-		this.error = error;
-	}
-	
-	
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+
 }

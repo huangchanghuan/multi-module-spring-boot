@@ -8,23 +8,25 @@ import org.jsoup.nodes.Document;
 import java.util.Calendar;
 
 /**
- * @Author »Æ²ý»À
+ * @Author ï¿½Æ²ï¿½ï¿½ï¿½
  * @Date 2018-01-18  16:44
  */
 public class ParseTaoBaoVoucher {
     private static final WebClient webClient = new WebClient(BrowserVersion.INTERNET_EXPLORER);
-    static{
-        webClient.getOptions().setCssEnabled(false);// ½ûÓÃcssÖ§³Ö
+
+    static {
+        webClient.getOptions().setCssEnabled(false);// ï¿½ï¿½ï¿½ï¿½cssÖ§ï¿½ï¿½
 
         webClient.setAjaxController(new NicelyResynchronizingAjaxController());
         webClient.getOptions().setRedirectEnabled(true);
 
         webClient.getOptions().setAppletEnabled(false);
-        webClient.getOptions().setJavaScriptEnabled(true); // ÆôÓÃJS½âÊÍÆ÷£¬Ä¬ÈÏÎªtrue
-        webClient.getOptions().setThrowExceptionOnScriptError(false); // jsÔËÐÐ´íÎóÊ±£¬ÊÇ·ñÅ×³öÒì³£
+        webClient.getOptions().setJavaScriptEnabled(true); // ï¿½ï¿½ï¿½ï¿½JSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½ï¿½Îªtrue
+        webClient.getOptions().setThrowExceptionOnScriptError(false); // jsï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ç·ï¿½ï¿½×³ï¿½ï¿½ì³£
         webClient.getOptions().setTimeout(25000);
         webClient.getOptions().setUseInsecureSSL(true);
     }
+
     public static void main(String[] args) {
 
 
@@ -39,8 +41,8 @@ public class ParseTaoBaoVoucher {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(1516273053303l);
         System.out.println(calendar.getTime());
-        try{
-            HtmlPage page=webClient.getPage(url);
+        try {
+            HtmlPage page = webClient.getPage(url);
             webClient.waitForBackgroundJavaScript(20000);
             Document doc = Jsoup.parse(page.asXml());
             System.out.println(doc);

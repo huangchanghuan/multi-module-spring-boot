@@ -4,7 +4,6 @@ import com.yimi.product.module.user.dao.UserDao;
 
 /**
  * 用户dao实现
- *
  */
 //@Repository
 public class UserDaoImpl implements UserDao {

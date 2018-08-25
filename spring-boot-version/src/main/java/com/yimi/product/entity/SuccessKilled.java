@@ -3,66 +3,65 @@ package com.yimi.product.entity;
 import java.util.Date;
 
 public class SuccessKilled {
-	
-	private long seckillId;
-	
-	private long userPhone;
-	
-	private short state;
-	
-	private Date createTime;
-	
-	//多对一
-	private Seckill seckill;
-	
-	
-	
-	@Override
-	public String toString() {
-		return "SuccessKilled [seckillId=" + seckillId + ", userPhone="
-				+ userPhone + ", state=" + state + ", createTime=" + createTime
-				+ "]";
-	}
 
-	public Seckill getSeckill() {
-		return seckill;
-	}
+    private long seckillId;
 
-	public void setSeckill(Seckill seckill) {
-		this.seckill = seckill;
-	}
+    private long userPhone;
 
-	public long getSeckillId() {
-		return seckillId;
-	}
+    private short state;
 
-	public void setSeckillId(long seckillId) {
-		this.seckillId = seckillId;
-	}
+    private Date createTime;
 
-	public long getUserPhone() {
-		return userPhone;
-	}
+    //多对一
+    private Seckill seckill;
 
-	public void setUserPhone(long userPhone) {
-		this.userPhone = userPhone;
-	}
 
-	public short getState() {
-		return state;
-	}
+    @Override
+    public String toString() {
+        return "SuccessKilled [seckillId=" + seckillId + ", userPhone="
+                + userPhone + ", state=" + state + ", createTime=" + createTime
+                + "]";
+    }
 
-	public void setState(short state) {
-		this.state = state;
-	}
+    public Seckill getSeckill() {
+        return seckill;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public void setSeckill(Seckill seckill) {
+        this.seckill = seckill;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-	
-	
+    public long getSeckillId() {
+        return seckillId;
+    }
+
+    public void setSeckillId(long seckillId) {
+        this.seckillId = seckillId;
+    }
+
+    public long getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(long userPhone) {
+        this.userPhone = userPhone;
+    }
+
+    public short getState() {
+        return state;
+    }
+
+    public void setState(short state) {
+        this.state = state;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+
 }	

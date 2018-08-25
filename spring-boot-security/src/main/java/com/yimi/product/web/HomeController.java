@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
-    
+
     @RequestMapping("/seckill")
     public String index(Model model) {
         DateResult<String> msg = new DateResult(true, "请求成功！");

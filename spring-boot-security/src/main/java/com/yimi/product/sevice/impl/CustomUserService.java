@@ -13,14 +13,15 @@ import org.springframework.stereotype.Service;
 public class CustomUserService implements UserDetailsService {
     @Autowired
     UserInfoDao userInfoDao;
+
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         SysUser user = userInfoDao.findByUsername(s);
         if (user == null) {
             throw new UsernameNotFoundException("用户名不存在");
         }
-        System.out.println("s:"+s);
-        System.out.println("username:"+user.getUsername()+";password:"+user.getPassword());
+        System.out.println("s:" + s);
+        System.out.println("username:" + user.getUsername() + ";password:" + user.getPassword());
         return user;
     }
 }
