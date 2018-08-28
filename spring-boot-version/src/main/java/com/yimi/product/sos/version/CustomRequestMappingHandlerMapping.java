@@ -12,7 +12,7 @@ import java.util.Comparator;
 public class CustomRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
     /**
      * 类级别的版本注解
-     *
+     *  解析版本选择条件condition,作为url匹配条件
      * @param handlerType
      * @return
      */

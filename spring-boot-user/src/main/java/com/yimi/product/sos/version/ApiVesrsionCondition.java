@@ -24,7 +24,7 @@ public class ApiVesrsionCondition implements RequestCondition<ApiVesrsionConditi
     }
 
     public ApiVesrsionCondition getMatchingCondition(HttpServletRequest request) {
-        System.out.println("====getMatchingCondition");
+//        System.out.println("====getMatchingCondition");
         Matcher m = VERSION_PREFIX_PATTERN.matcher(request.getRequestURL());
         if (m.find()) {
             Integer version = Integer.valueOf(m.group(1));//路径的版本号
