@@ -23,6 +23,11 @@ public class ApiVesrsionCondition implements RequestCondition<ApiVesrsionConditi
         return new ApiVesrsionCondition(other.getApiVersion());
     }
 
+    /**
+     *
+     * @param request
+     * @return
+     */
     public ApiVesrsionCondition getMatchingCondition(HttpServletRequest request) {
         System.out.println("====getMatchingCondition");
         Matcher m = VERSION_PREFIX_PATTERN.matcher(request.getRequestURL());

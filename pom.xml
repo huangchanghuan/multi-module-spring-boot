@@ -12,6 +12,8 @@
         <module>spring-boot-websocket</module>
         <module>eureka-server</module>
         <module>movie-server</module>
+        <module>spring-boot-version</module>
+        <module>spring-boot-shiro</module>
         <!--<module>web-flux</module>-->
 
     </modules>
