@@ -23,6 +23,10 @@ public class MovieServerApplication {
         SpringApplication.run(MovieServerApplication.class, args);
     }
 
+    /**
+     * 配置熔断监控的servlet,才能显示监控页面
+     * @return
+     */
     @Bean
     public ServletRegistrationBean getServlet(){
         HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
