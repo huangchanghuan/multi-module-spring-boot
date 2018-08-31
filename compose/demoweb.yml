@@ -1,22 +1,22 @@
 version: '3'
 services:
-  web:
-    image: binblee/demo-web
+  movie:
+    image: sunstardocker/movie-server:0.0.1
     networks:
-      - springcloud-overlay
+      - eureka-net
     environment:
-      - EUREKA_SERVER_ADDRESS=http://eureka1:8761/eureka/,http://eureka2:8761/eureka/,http://eureka3:8761/eureka/
+      - EUREKA_SERVER_ADDRESS=http://eureka2:8762/eureka/,http://eureka3:8763/eureka/,http://eureka1:8761/eureka/
     ports:
       - "8080"
-
-  bookservice:
-    image: binblee/demo-bookservice
+  user-server:
+    image: sunstardocker/spring-boot-user:0.0.1
     networks:
-      - springcloud-overlay
+    - eureka-net
     environment:
-      - EUREKA_SERVER_ADDRESS=http://eureka1:8761/eureka/,http://eureka2:8761/eureka/,http://eureka3:8761/eureka/
+    - EUREKA_SERVER_ADDRESS=http://eureka2:8762/eureka/,http://eureka3:8763/eureka/,http://eureka1:8761/eureka/
+    ports:
+    - "8081"
 
 networks:
-  springcloud-overlay:
-    external:
-      name: springcloud-overlay
+  eureka-net:            #网络名称
+    driver: overlay
