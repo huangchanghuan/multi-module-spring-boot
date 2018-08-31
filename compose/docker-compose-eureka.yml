@@ -1,7 +1,7 @@
 version: "3"
 services:
   eureka1:      # 默认情况下，其他服务可以使用服务名称连接到该服务。因此，对于eurekaService1的节点，它需要连接http://eurekaService2/3:951X/eureka/，因此需要配置该服务的名称是eurekaService1。
-    image: sunstardocker/eureka-server:0.0.3
+    image: sunstardocker/eureka-server:0.0.4
     deploy:
       replicas: 1   #定义 replicated 模式的服务的复本数量
       update_config:

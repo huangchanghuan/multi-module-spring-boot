@@ -5,9 +5,9 @@ server:
   port: 8761
 eureka:
   instance:
-    hostname: localhost        #Eureka实例的主机名
-    #prefer-ip-address: true
-    #instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+    hostname: eureka1        #Eureka实例的主机名
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
 #  client:
 #    serviceUrl:
 #      defaultZone: http://eureka2:8762/eureka/,http://eureka3:8763/eureka/  #Eureka节点相互注册
