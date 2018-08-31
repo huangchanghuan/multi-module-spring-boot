@@ -32,7 +32,7 @@ public class MovieController {
     @ResponseBody
     public ServiceResult<List<SysUser>> searchAll() {
         String result= userRemote.searchAll();
-//        System.out.println("远程服务获取结果:"+result);
+        System.out.println("远程服务获取结果:"+result);
 //        ObjectMapper objectMapper=new ObjectMapper();
 //        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         ServiceResult<List<SysUser>> jsonObject = null;
@@ -53,6 +53,7 @@ public class MovieController {
     @RequestMapping(value = "/searchAll1", method = RequestMethod.GET)
     @ResponseBody
     public ServiceResult<List<SysUser>> searchAll1() {
+        System.out.println("远程服务获取结果:");
         return userRemote.searchAll1();
     }
 }
