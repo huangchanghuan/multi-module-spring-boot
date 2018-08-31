@@ -10,8 +10,8 @@ spring:
 eureka:
   instance:
     hostname: eureka1        #Eureka实例的主机名
-    prefer-ip-address: true
-    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+    #prefer-ip-address: true
+    #instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
   client:
     serviceUrl:
       defaultZone: http://eureka2:8762/eureka/,http://eureka3:8763/eureka/  #Eureka节点相互注册
@@ -24,8 +24,8 @@ spring:
 eureka:
   instance:
     hostname: eureka2      #Eureka实例的主机名
-    prefer-ip-address: true
-    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+    #prefer-ip-address: true
+    #instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
   client:
     serviceUrl:
       defaultZone: http://eureka1:8761/eureka/,http://eureka3:8763/eureka/
@@ -38,8 +38,8 @@ spring:
 eureka:
   instance:
     hostname: eureka3    #Eureka实例的主机名
-    prefer-ip-address: true
-    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+    #prefer-ip-address: true
+    #instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
   client:
     serviceUrl:
       defaultZone: http://eureka1:8761/eureka/,http://eureka2:8762/eureka/
