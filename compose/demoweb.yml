@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    image: binblee/demo-web
+    networks:
+      - springcloud-overlay
+    environment:
+      - EUREKA_SERVER_ADDRESS=http://eureka1:8761/eureka/,http://eureka2:8761/eureka/,http://eureka3:8761/eureka/
+    ports:
+      - "8080"
+
+  bookservice:
+    image: binblee/demo-bookservice
+    networks:
+      - springcloud-overlay
+    environment:
+      - EUREKA_SERVER_ADDRESS=http://eureka1:8761/eureka/,http://eureka2:8761/eureka/,http://eureka3:8761/eureka/
+
+networks:
+  springcloud-overlay:
+    external:
+      name: springcloud-overlay
