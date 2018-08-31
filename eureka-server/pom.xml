@@ -77,7 +77,7 @@
                     <!--镜像的基础版本-->
                     <baseImage>java:openjdk-8-jdk-alpine</baseImage>
                     <!--镜像启动参数-->
-                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+                    <entryPoint>["java", "-Djava.security.egd=file:/dev/./urandom","-jar", "/${project.build.finalName}.jar"]</entryPoint>
                     <!--项目文件位置-->
                     <resources>
                         <resource>
