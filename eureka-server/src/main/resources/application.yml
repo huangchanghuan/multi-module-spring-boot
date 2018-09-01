@@ -1,13 +1,18 @@
 spring:
   application:
     name: eureka-server #用于注册到eureka的名称,消费服务根据这个名,获取生产者的overlay的ip和端口号
+  cloud:
+    inetutils:
+      preferredNetworks: #使用以下ip开头
+      - 10.0
 server:
   port: 8761
 eureka:
   instance:
-    hostname: eureka-server       #Eureka实例的主机名
+    hostname: eureka-server1       #Eureka实例的主机名
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+
 #  client:
 #    serviceUrl:
 #      defaultZone: http://eureka2:8762/eureka/,http://eureka3:8763/eureka/  #Eureka节点相互注册
