@@ -1,22 +1,21 @@
 version: '3'
 services:
   movie:
-    image: sunstardocker/movie-server:0.0.1
+    image: sunstardocker/movie-server:0.0.3
     networks:
-      - eureka-net
+    - myingress
     environment:
-      - EUREKA_SERVER_ADDRESS=http://eureka2:8762/eureka/,http://eureka3:8763/eureka/,http://eureka1:8761/eureka/
+    - EUREKA_ERVER_ADDRESS=http://eureka2:8762/eureka/,http://eureka3:8763/eureka/,http://eureka1:8761/eureka/
     ports:
-      - "8080"
+    - "8771:8080"
   user-server:
     image: sunstardocker/spring-boot-user:0.0.1
     networks:
-    - eureka-net
+    - myingress
     environment:
     - EUREKA_SERVER_ADDRESS=http://eureka2:8762/eureka/,http://eureka3:8763/eureka/,http://eureka1:8761/eureka/
     ports:
-    - "8081"
-
+    - "8772:8081"
 networks:
-  eureka-net:            #网络名称
-    driver: overlay
+  myingress:
+    external: true
