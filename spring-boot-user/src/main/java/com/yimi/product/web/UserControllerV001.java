@@ -48,7 +48,7 @@ public class UserControllerV001 {
     @RequestMapping(value = "/searchAll", method = RequestMethod.GET)
     @ResponseBody
     public ServiceResult<List<SysUser>> searchAll() {
-        logger.info("查询所有用户1");
+//        logger.info("查询所有用户1");
         List<SysUser> sysUsers = userService.getUsers();
         return new ServiceResult<List<SysUser>>(true, sysUsers);
     }
