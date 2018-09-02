@@ -1,0 +1,48 @@
+
+server:
+  port: 8081
+#注册中心的服务名
+spring:
+  application:
+    name: user-server
+  cloud:
+    inetutils:
+      preferred-networks:
+        - 10.0
+      ignored-interfaces:
+        - eth0
+  #DB Configuration:
+  datasource:
+    url: jdbc:mysql://192.168.13.48:3306/seckill?&useUnicode=true&characterEncoding=UTF-8
+    driverClassName: com.mysql.jdbc.Driver
+    username: root
+    password: Sunstar123!
+
+
+eureka:
+  client:
+    serviceUrl:
+#      defaultZone: http://192.168.13.180:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: user-server1 #约定和swarm服务名对应,其实没啥作用
+    prefer-ip-address: true #注册中心,注册的是ip
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+
+  #监控
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: *
+  endpoint:
+    health:
+      show-details: always
+
+  #log
+logging:
+  level:
+    root: info
+#mysql 日志
+#logging.level.com.yimi.product.mapper=DEBUG

@@ -1,0 +1,68 @@
+
+server:
+  port: 8082
+#注册中心的服务名
+spring:
+  application:
+    name: movie-server
+  cloud:
+    inetutils:
+      preferred-networks:
+        - 10.0
+      ignored-interfaces:
+        - eth0
+
+eureka:
+  client:
+    serviceUrl:
+#      defaultZone: http://eureka-server:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: movie-server #约定和swarm服务名对应,其实没啥作用
+    prefer-ip-address: true #注册中心,注册的是ip
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+
+  #监控
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: *
+  endpoint:
+    health:
+      show-details: always
+
+#熔断器生效
+feign:
+  hystrix:
+    enabled: true
+  #熔断超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+      circuitBreaker:
+        errorThresholdPercentage: 99   #熔断百分比
+  threadpool:   #线程池
+    default:
+      coreSize: 10
+      maxQueueSize: 1000   #熔断队列
+      queueSizeRejectionThreshold: 1000
+#hystrix.threadpool.default.queueSizeRejectionThreshold=100000
+#请求处理的超时时间
+ribbon:
+  ReadTimeout: 120000
+  ConnectTimeout: 30000 #请求连接的超时时间
+
+
+
+  #log
+logging:
+  level:
+    root: info
+#mysql 日志
+#logging.level.com.yimi.product.mapper=DEBUG
