@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    config:
+      name: movie-server
+      profile: dev
+      label: master
+      discovery:
+        enabled: true
+        serviceId: config-server
+
+eureka:
+  client:
+    serviceUrl:
+      #      defaultZone: http://eureka-server:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: movie-server #约定和swarm服务名对应,其实没啥作用
+    prefer-ip-address: true #注册中心,注册的是ip
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+

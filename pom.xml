@@ -15,6 +15,8 @@
         <module>spring-boot-version</module>
         <module>spring-boot-shiro</module>
         <module>turbine-server</module>
+        <module>config-server</module>
+        <module>zuul-server</module>
         <!--<module>web-flux</module>-->
 
     </modules>

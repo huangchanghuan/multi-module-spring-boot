@@ -6,7 +6,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yimi.product.movieserver.dto.ServiceResult;
 import com.yimi.product.movieserver.entity.SysUser;
 import com.yimi.product.movieserver.remote.UserRemote;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,12 +21,33 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/movie")//url:/项目/模块/资源/{id}/细分  seckill/list
+@RefreshScope
 public class MovieController {
+    private final Logger logger = LoggerFactory.getLogger(MovieController.class);
     @Autowired
     private UserRemote userRemote;
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Value("${movie-server.config.hello}")
+    private String hello;
+    /**
+     * 序列化测试
+     *
+     * @return
+     */
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    @ResponseBody
+    public String hello() {
+//        System.out.println("远程服务获取结果:");
+        logger.info("request two name is 2");
+        try{
+            Thread.sleep(1000000);
+        }catch ( Exception e){
+            logger.error(" hello two error",e);
+        }
+        return hello;
+    }
     /**
      * 序列化测试
      *
