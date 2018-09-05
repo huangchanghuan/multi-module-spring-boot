@@ -6,6 +6,7 @@
     <groupId>com.yimi.product</groupId>
     <artifactId>multi-module</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <modules>
         　　　 <!-- 模块都写在此处 -->
         <module>spring-boot-user</module>
