@@ -20,8 +20,9 @@ spring:
     username: root
     password: 7746595
   zipkin:
+    sender:
+      type: web
     base-url: http://192.168.13.48:9411
-
     enabled: true
     discoveryClientEnabled: true
   sleuth:
