@@ -14,6 +14,8 @@ spring:
 
 
   zipkin:
+    sender:
+      type: web
     base-url: http://192.168.13.48:9411
   sleuth:
     sampler:
