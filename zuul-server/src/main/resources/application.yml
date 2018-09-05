@@ -11,6 +11,16 @@ spring:
         - 10.0
       ignored-interfaces:
         - eth0
+
+
+  zipkin:
+    base-url: http://192.168.13.48:9411
+  sleuth:
+    sampler:
+      probability: 1
+#    traceId128: true
+
+
 eureka:
   client:
     serviceUrl:

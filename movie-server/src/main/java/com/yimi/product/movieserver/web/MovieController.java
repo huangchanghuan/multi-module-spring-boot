@@ -41,11 +41,11 @@ public class MovieController {
     public String hello() {
 //        System.out.println("远程服务获取结果:");
         logger.info("request two name is 2");
-        try{
-            Thread.sleep(1000000);
-        }catch ( Exception e){
-            logger.error(" hello two error",e);
-        }
+//        try{
+//            Thread.sleep(1000000);
+//        }catch ( Exception e){
+//            logger.error(" hello two error",e);
+//        }
         return hello;
     }
     /**

@@ -19,7 +19,22 @@ spring:
     port: 5672
     username: root
     password: 7746595
-#eureka:
+  zipkin:
+    base-url: http://192.168.13.48:9411
+
+    enabled: true
+    discoveryClientEnabled: true
+  sleuth:
+    sampler:
+      probability: 1.0
+#    traceId128: truex`
+sample:
+  zipkin:
+    # When enabled=false, traces log to the console. Comment to send to zipkin
+    enabled: false
+
+
+  #eureka:
 #  client:
 #    serviceUrl:
 ##      defaultZone: http://eureka-server:8761/eureka/
@@ -28,9 +43,6 @@ spring:
 #    hostname: movie-server #约定和swarm服务名对应,其实没啥作用
 #    prefer-ip-address: true #注册中心,注册的是ip
 #    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
-
-
-
 
 
   #监控
@@ -75,5 +87,6 @@ ribbon:
 logging:
   level:
     root: info
+
 #mysql 日志
 #logging.level.com.yimi.product.mapper=DEBUG
