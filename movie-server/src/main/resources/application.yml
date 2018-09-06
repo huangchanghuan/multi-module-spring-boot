@@ -3,8 +3,6 @@ server:
   port: 8083
 #注册中心的服务名
 spring:
-  application:
-    name: movie-server
   cloud:
     inetutils:
       preferred-networks:
@@ -29,10 +27,7 @@ spring:
     sampler:
       probability: 1.0
 #    traceId128: truex`
-sample:
-  zipkin:
-    # When enabled=false, traces log to the console. Comment to send to zipkin
-    enabled: false
+
 
 
   #eureka:

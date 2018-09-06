@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: movie-server
   cloud:
     config:
       name: movie-server
