@@ -50,9 +50,15 @@
             </providers>
         </encoder>
     </appender>
+    <appender name="tcpLogstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>10.132.0.0:9250</destination>
+        <queueSize>1048576</queueSize>
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder" />
+    </appender>
 
     <root level="INFO">
         <appender-ref ref="console"/>
         <appender-ref ref="logstash"/>
+        <appender-ref ref="tcpLogstash"/>
     </root>
 </configuration>
