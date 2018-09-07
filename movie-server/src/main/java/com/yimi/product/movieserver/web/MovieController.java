@@ -29,8 +29,29 @@ public class MovieController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Value("${movie-server.config.hello}")
+//    @Value("${movie-server.config.hello}") 这里要不要进行实体封装
     private String hello;
+
+    /**
+     * 序列化测试
+     *
+     * @return
+     */
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    @ResponseBody
+    public SysUser search() {
+//        System.out.println("远程服务获取结果:");
+        logger.info("search mock");
+        String result=userRemote.search();
+        logger.info(result);
+//        try{
+//            Thread.sleep(1000000);
+//        }catch ( Exception e){
+//            logger.error(" hello two error",e);
+//        }
+        return new SysUser();
+    }
+
     /**
      * 序列化测试
      *

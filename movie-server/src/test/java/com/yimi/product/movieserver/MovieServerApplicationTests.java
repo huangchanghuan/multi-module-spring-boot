@@ -9,8 +9,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class MovieServerApplicationTests {
 
+
     @Test
     public void contextLoads() {
+
     }
 
 }

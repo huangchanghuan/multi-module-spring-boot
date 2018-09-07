@@ -25,6 +25,13 @@ public interface UserRemote {
      *
      * @return
      */
+    @RequestMapping(value = "/v001/user/search", method = RequestMethod.GET,consumes = {"text/plain"})
+    public String search();
+
+    /**
+     *
+     * @return
+     */
     @RequestMapping(value = "/v001/user/searchAll",method = RequestMethod.GET)
     public ServiceResult<List<SysUser>> searchAll1();
 }

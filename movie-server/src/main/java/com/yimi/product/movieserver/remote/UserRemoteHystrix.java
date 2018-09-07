@@ -18,6 +18,11 @@ public class UserRemoteHystrix implements UserRemote{
     }
 
     @Override
+    public String search() {
+        return "查询失败";
+    }
+
+    @Override
     public ServiceResult<List<SysUser>> searchAll1() {
         return new ServiceResult<List<SysUser>>(false,new ArrayList<>());
     }
