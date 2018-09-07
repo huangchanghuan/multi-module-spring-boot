@@ -3,6 +3,7 @@ package com.yimi.product.web;
 
 import com.yimi.product.dto.ServiceResult;
 import com.yimi.product.entity.SysUser;
+import com.yimi.product.entity.User;
 import com.yimi.product.service.UserService;
 import com.yimi.product.sos.version.ApiVersion;
 import org.slf4j.Logger;
@@ -52,7 +53,17 @@ public class UserControllerV001 {
         List<SysUser> sysUsers = userService.getUsers();
         return new ServiceResult<List<SysUser>>(true, sysUsers);
     }
-
+    /**
+     * 查询所有用户
+     *
+     * @return
+     */
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    @ResponseBody
+    public User search() {
+//        logger.info("查询所有用户1");
+        return new User();
+    }
     /**
      * 添加对象 name username, password
      *

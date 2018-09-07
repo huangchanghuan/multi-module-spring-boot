@@ -77,8 +77,11 @@
             <plugin>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-contract-maven-plugin</artifactId>
-                <version>${spring-cloud-contract.version}</version>
+                <version>2.1.0.BUILD-SNAPSHOT</version>
                 <extensions>true</extensions>
+                <configuration>
+                    <baseClassForTests>com.yimi.product.SpringBootUserApplicationTests</baseClassForTests>
+                </configuration>
             </plugin>
             <!--docker maven插件-->
             <plugin>
