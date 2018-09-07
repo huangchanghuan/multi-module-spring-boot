@@ -1,8 +1,10 @@
 package com.yimi.product.movieserver.remote;
 
+import com.yimi.product.movieserver.dto.Result;
 import com.yimi.product.movieserver.dto.ServiceResult;
 import com.yimi.product.movieserver.entity.SysUser;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,14 @@ import java.util.List;
  */
 @Component
 public class UserRemoteHystrix implements UserRemote{
+    @Override
+    public Result users(@RequestParam("name") String name) {
+        Result result = new Result();
+        result.setCode("22222");
+        result.setMesg("熔断失败");
+        return result;
+    }
+
     @Override
     public String searchAll() {
         return "查询失败";

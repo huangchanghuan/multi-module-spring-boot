@@ -1,6 +1,5 @@
 package com.yimi.product.movieserver.web;
 
-import net.minidev.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,18 +15,13 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@AutoConfigureStubRunner(ids = {"com.yimi.product:spring-boot-user:+:stubs:18099"}, stubsMode = StubRunnerProperties.StubsMode.LOCAL)
+@AutoConfigureStubRunner(ids = {"com.yimi.product:spring-boot-user:+:stubs:8080"}, stubsMode = StubRunnerProperties.StubsMode.LOCAL)
 public class MovieControllerTest {
 
     @Test

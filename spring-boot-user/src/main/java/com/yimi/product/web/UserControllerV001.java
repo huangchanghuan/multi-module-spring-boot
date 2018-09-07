@@ -1,6 +1,7 @@
 package com.yimi.product.web;
 
 
+import com.yimi.product.dto.Result;
 import com.yimi.product.dto.ServiceResult;
 import com.yimi.product.entity.SysUser;
 import com.yimi.product.entity.User;
@@ -9,17 +10,14 @@ import com.yimi.product.sos.version.ApiVersion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
  * @author Peter  2016-9-3下午5:02:48
  */
-@Controller
+@RestController
 @ApiVersion(001)
 @RequestMapping("/{version}/user")//url:/项目/模块/资源/{id}/细分  seckill/list
 public class UserControllerV001 {
@@ -27,6 +25,13 @@ public class UserControllerV001 {
 
     @Autowired
     private UserService userService;
+
+    @RequestMapping(method = RequestMethod.GET, value = "/hello")
+    public Result world(@RequestParam String name) {
+        Result result = new Result();
+        System.out.println(name);
+        return result;
+    }
 
     /**
      * 查询单个用户

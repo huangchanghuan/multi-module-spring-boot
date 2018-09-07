@@ -1,5 +1,6 @@
 package com.yimi.product.movieserver.remote;
 
+import com.yimi.product.movieserver.dto.Result;
 import com.yimi.product.movieserver.dto.ServiceResult;
 import com.yimi.product.movieserver.entity.SysUser;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -12,8 +13,14 @@ import java.util.List;
 /**
  * 远程调用服务
  */
-@FeignClient(name= "user-server",fallback = UserRemoteHystrix.class)
+//@FeignClient(name= "user-server",fallback = UserRemoteHystrix.class)
+@FeignClient(name= "user-server")
 public interface UserRemote {
+
+
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    Result users(@RequestParam("name") String name);
+
     /**
      *
      * @return

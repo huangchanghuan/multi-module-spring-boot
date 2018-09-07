@@ -3,21 +3,14 @@ package com.yimi.product;
 import com.yimi.product.web.UserControllerV001;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
 
-@RunWith(MockitoJUnitRunner.class)
-public class SpringBootUserApplicationTests {
-
+/**
+ * @Author 黄昌焕
+ * @Date 2018-09-07  13:10
+ */
+public class MvcMockTest {
     @Before
     public void setup() {
         RestAssuredMockMvc.standaloneSetup(new UserControllerV001());
     }
-
-    @Test
-    public void contextLoads() {
-
-    }
-
 }

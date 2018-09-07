@@ -1,25 +1,21 @@
 package com.yimi.product.movieserver.web;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.yimi.product.movieserver.dto.Result;
 import com.yimi.product.movieserver.dto.ServiceResult;
 import com.yimi.product.movieserver.entity.SysUser;
 import com.yimi.product.movieserver.remote.UserRemote;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/movie")//url:/项目/模块/资源/{id}/细分  seckill/list
 @RefreshScope
 public class MovieController {
@@ -32,6 +28,10 @@ public class MovieController {
 //    @Value("${movie-server.config.hello}") 这里要不要进行实体封装
     private String hello;
 
+    @GetMapping("/classes")
+    public Result hello(@RequestParam String name) {
+        return userRemote.users(name);
+    }
     /**
      * 序列化测试
      *
