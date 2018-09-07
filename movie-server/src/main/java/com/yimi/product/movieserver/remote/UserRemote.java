@@ -13,12 +13,11 @@ import java.util.List;
 /**
  * 远程调用服务
  */
-//@FeignClient(name= "user-server",fallback = UserRemoteHystrix.class)
-@FeignClient(name= "user-server")
+@FeignClient(name= "spring-boot-user")
 public interface UserRemote {
 
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    @RequestMapping(value = "/v001/user/hello", method = RequestMethod.GET)
     Result users(@RequestParam("name") String name);
 
     /**

@@ -13,3 +13,7 @@ spring boot **2.0.0.RC2** 实现版本控制
 
 **建议:** 放弃使用自定义ApiVersion注解,control类注解@RequestMapping上固定配置url版本如:'/v1/...',重写RequestMappingHandlerMapping中
 匹配url的方法lookupHandlerMethod,实现自定义匹配,从而实现部分'固定url'访问不用遍历整个urlMap进行正则匹配,提高性能速度;
+
+
+#注意事项
+1.契约测试,feign调用的producer服务名和producer的maven.artifactId一致(stub是否有修改服务名方法?);
