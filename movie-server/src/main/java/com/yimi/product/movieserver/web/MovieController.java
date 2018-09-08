@@ -9,6 +9,7 @@ import com.yimi.product.movieserver.remote.UserRemote;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +26,7 @@ public class MovieController {
     @Autowired
     private ObjectMapper objectMapper;
 
-//    @Value("${movie-server.config.hello}") 这里要不要进行实体封装
+    @Value("${movie-server.config.hello}") //这里要不要进行实体封装
     private String hello;
 
     @GetMapping("/classes")
@@ -77,6 +78,7 @@ public class MovieController {
     @RequestMapping(value = "/searchAll", method = RequestMethod.GET)
     @ResponseBody
     public ServiceResult<List<SysUser>> searchAll() {
+        System.out.println(hello);
         String result= userRemote.searchAll();
 //        System.out.println("远程服务获取结果:"+result);
 //        ObjectMapper objectMapper=new ObjectMapper();

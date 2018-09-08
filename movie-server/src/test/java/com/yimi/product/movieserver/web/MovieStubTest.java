@@ -21,7 +21,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @AutoConfigureMockMvc
 //启动契约服务，模拟produer提供服务
 @AutoConfigureStubRunner(ids = {"com.yimi.product:user-server:+:stubs:8999"}, stubsMode = StubRunnerProperties.StubsMode.LOCAL)
-public class MovieTest {
+public class MovieStubTest {
 
     @Autowired
     private MockMvc mvc;

@@ -1,12 +1,12 @@
-#spring:
-#  cloud:
-#    config:
-#      name: movie-server
-#      profile: dev
-#      label: master
-#      discovery:
-#        enabled: true
-#        serviceId: config-server
+spring:
+  cloud:
+    config:
+      name: movie-server
+      profile: dev
+      label: master
+      discovery:
+        enabled: true
+        serviceId: config-server
 
 eureka:
   client:
