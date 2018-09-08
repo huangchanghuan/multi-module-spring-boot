@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <modules>
         　　　 <!-- 模块都写在此处 -->
-        <module>spring-boot-user</module>
+        <module>user-server</module>
         <module>spring-boot-websocket</module>
         <module>eureka-server</module>
         <module>movie-server</module>
@@ -18,7 +18,6 @@
         <module>turbine-server</module>
         <module>config-server</module>
         <module>zuul-server</module>
-        <module>zipkin-server</module>
         <!--<module>web-flux</module>-->
 
     </modules>

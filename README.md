@@ -17,3 +17,7 @@ spring boot **2.0.0.RC2** 实现版本控制
 
 #注意事项
 1.契约测试,feign调用的producer服务名和producer的maven.artifactId一致(stub是否有修改服务名方法?);
+
+2.本地hostname应该和测试环境,生产环境统一,方便配置;
+
+3.

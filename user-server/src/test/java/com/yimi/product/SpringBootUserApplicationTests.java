@@ -17,7 +17,8 @@ public class SpringBootUserApplicationTests {
 
     @Test
     public void contextLoads() {
-
+        System.out.println("another test");
     }
+
 
 }

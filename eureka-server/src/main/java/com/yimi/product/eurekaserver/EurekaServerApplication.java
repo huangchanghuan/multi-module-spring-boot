@@ -8,7 +8,6 @@ import org.springframework.cloud.netflix.turbine.EnableTurbine;
 
 @EnableEurekaServer
 @SpringBootApplication
-// @EnableTurbine注解包含了@EnableDiscoveryClient注解
 @EnableTurbine
 @EnableHystrixDashboard
 public class EurekaServerApplication {
