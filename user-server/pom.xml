@@ -69,6 +69,24 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.7</version>
+                <!--<configuration>-->
+                    <!--<formats>-->
+                        <!--<format>xml</format>-->
+                    <!--</formats>-->
+                <!--</configuration>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<phase>package</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>cobertura</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            </plugin>
             <!--spring boot maven插件-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>

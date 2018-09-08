@@ -20,7 +20,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 //初使化测试测试配置，测试controller需要
 @AutoConfigureMockMvc
 //启动契约服务，模拟produer提供服务
-@AutoConfigureStubRunner(ids = {"com.yimi.product:spring-boot-user:+:stubs:8999"}, stubsMode = StubRunnerProperties.StubsMode.LOCAL)
+@AutoConfigureStubRunner(ids = {"com.yimi.product:user-server:+:stubs:8999"}, stubsMode = StubRunnerProperties.StubsMode.LOCAL)
 public class MovieTest {
 
     @Autowired
@@ -31,6 +31,14 @@ public class MovieTest {
         MvcResult mvcResult=mvc.perform(MockMvcRequestBuilders.get("/movie/classes").param("name", "zhangsan"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("code", Is.is("000000")))
+                .andReturn();// 返回执行请求的结果;
+        System.out.println(mvcResult.getResponse().getContentAsString());
+    }
+
+    @Test
+    public void testSearchAll() throws Exception {
+        MvcResult mvcResult=mvc.perform(MockMvcRequestBuilders.get("/movie/searchAll"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();// 返回执行请求的结果;
         System.out.println(mvcResult.getResponse().getContentAsString());
     }

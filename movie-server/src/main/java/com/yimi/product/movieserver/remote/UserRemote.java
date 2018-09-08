@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 远程调用服务
  */
-@FeignClient(name= "spring-boot-user")
+@FeignClient(name= "user-server")
 public interface UserRemote {
 
 
