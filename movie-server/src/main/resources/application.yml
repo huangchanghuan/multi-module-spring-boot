@@ -1,6 +1,5 @@
 
-server:
-  port: 8083
+
 #注册中心的服务名
 spring:
   cloud:
