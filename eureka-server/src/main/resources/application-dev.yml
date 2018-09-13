@@ -5,8 +5,6 @@ spring:
     inetutils:
       preferredNetworks: #使用以下ip开头
       - 10.0
-      ignored-interfaces:
-      - eth0
 
 server:
   port: 8761
