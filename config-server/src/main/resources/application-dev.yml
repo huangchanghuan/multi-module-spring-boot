@@ -9,8 +9,7 @@ spring:
     inetutils:
       preferred-networks:
         - 10.0
-      ignored-interfaces:
-        - eth0
+
     config:
       server:
         git:
@@ -30,7 +29,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${ADDITIONAL_EUREKA_SERVER_LIST}
   instance:
     hostname: config-server #约定和swarm服务名对应,其实没啥作用
     prefer-ip-address: true #注册中心,注册的是ip

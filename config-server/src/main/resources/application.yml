@@ -9,8 +9,7 @@ spring:
     inetutils:
       preferred-networks:
         - 10.0
-      ignored-interfaces:
-        - eth0
+
     config:
       server:
         git:
