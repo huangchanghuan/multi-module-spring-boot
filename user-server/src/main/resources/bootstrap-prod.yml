@@ -12,8 +12,6 @@ spring:
     inetutils:
       preferred-networks:
       - 10.0
-      ignored-interfaces:
-      - eth0
 eureka:
   client:
     registryFetchIntervalSeconds: 5 #eureka client刷新本地缓存时间

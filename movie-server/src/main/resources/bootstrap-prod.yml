@@ -7,7 +7,8 @@ spring:
       discovery:
         enabled: true
         serviceId: config-server
-
+server:
+  port: 8082
 eureka:
   client:
     registryFetchIntervalSeconds: 5 #eureka client刷新本地缓存时间

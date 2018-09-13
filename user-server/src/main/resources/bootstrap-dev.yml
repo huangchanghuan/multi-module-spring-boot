@@ -7,13 +7,13 @@
 #      discovery:
 #        enabled: true
 #        serviceId: config-server
+
 spring:
   cloud:
     inetutils:
       preferred-networks:
       - 10.0
-      ignored-interfaces:
-      - eth0
+
 
 eureka:
   client:
