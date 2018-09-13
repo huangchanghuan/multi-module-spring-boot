@@ -5,12 +5,15 @@ spring:
     inetutils:
       preferredNetworks: #使用以下ip开头
       - 10.0
+      ignored-interfaces:
+      - eth0
+
 server:
   port: 8761
 
 eureka:
   instance:
-    hostname: eureka-server1      #Eureka实例的主机名
+    hostname: eureka-server      #Eureka实例的主机名
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
     lease-expiration-duration-in-seconds: 15 #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除 #注意，EurekaServer一定要设置eureka.server.eviction-interval-timer-in-ms否则这个配置无效，这个配置一般为服务刷新时间配置的三倍
