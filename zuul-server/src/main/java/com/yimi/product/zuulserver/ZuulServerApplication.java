@@ -11,6 +11,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 
@@ -37,7 +38,7 @@ public class ZuulServerApplication {
      * @param record
      * @param topic  topic
      */
-    @KafkaListener(id = "tut", topics = "filebeat")
+    @KafkaListener(id = "tut", topics = "filebeat",groupId = "firstGroup")//消费组id
     public void listen(ConsumerRecord<?, ?> record, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
         //判断是否NULL
         Optional<?> kafkaMessage = Optional.ofNullable(record.value());
@@ -45,10 +46,29 @@ public class ZuulServerApplication {
         if (kafkaMessage.isPresent()) {
             //获取消息
             Object message = kafkaMessage.get();
+            logger.info("Receive1： +++++++++++++++ Topic:" + topic);
+            logger.info("Receive1： +++++++++++++++ Record:" + record);
+            logger.info("Receive1： +++++++++++++++ Message:" + message);
+        }
+    }
 
-            logger.info("Receive： +++++++++++++++ Topic:" + topic);
-            logger.info("Receive： +++++++++++++++ Record:" + record);
-            logger.info("Receive： +++++++++++++++ Message:" + message);
+    /**
+     * 监听kafka.tut 的 topic
+     *
+     * @param record
+     * @param topic  topic
+     */
+    @KafkaListener(id = "tut1", topics = "filebeat",groupId = "firstGroup")//消费组id
+    public void listen1(ConsumerRecord<?, ?> record, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
+        //判断是否NULL
+        Optional<?> kafkaMessage = Optional.ofNullable(record.value());
+
+        if (kafkaMessage.isPresent()) {
+            //获取消息
+            Object message = kafkaMessage.get();
+            logger.info("Receive2： +++++++++++++++ Topic:" + topic);
+            logger.info("Receive2： +++++++++++++++ Record:" + record);
+            logger.info("Receive2： +++++++++++++++ Message:" + message);
         }
     }
 }
