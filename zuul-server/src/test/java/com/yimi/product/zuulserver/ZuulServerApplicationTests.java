@@ -11,6 +11,7 @@ public class ZuulServerApplicationTests {
 
     @Test
     public void contextLoads() {
+
     }
 
 }
