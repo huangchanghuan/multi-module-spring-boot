@@ -26,7 +26,7 @@ public class MovieController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Value("${movie-server.config.hello}") //这里要不要进行实体封装
+    @Value("${server.config.hello}") //这里要不要进行实体封装
     private String hello;
 
     @GetMapping("/classes")

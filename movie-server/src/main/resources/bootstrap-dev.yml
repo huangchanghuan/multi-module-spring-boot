@@ -1,14 +1,26 @@
+
+#官方配置中心
+#spring:
+#  cloud:
+#    config:
+#      name: movie-server
+#      profile: dev
+#      label: master
+#      discovery:
+#        enabled: true
+#        serviceId: config-server
+
+#zookeeper配置中心
 spring:
   cloud:
-    config:
-      name: movie-server
-      profile: dev
-      label: master
-      discovery:
-        enabled: true
-        serviceId: config-server
+    zookeeper:
+      connect-string: 192.168.13.180:2181,192.168.13.181:2181,192.168.13.182:2181
+      config:
+        root: /springboot/config/dev
+      enabled: true
+
 server:
-  port: 8082
+  port: 8089
 eureka:
   client:
     registryFetchIntervalSeconds: 5 #eureka client刷新本地缓存时间
