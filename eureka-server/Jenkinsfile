@@ -3,7 +3,7 @@ pipeline{
     stages {
         stage('Build') {
             steps {
-                echo 'Building eureka server to test env new'
+                echo 'Building eureka server to test env new old'
                 sh 'pwd'
             }
         }
