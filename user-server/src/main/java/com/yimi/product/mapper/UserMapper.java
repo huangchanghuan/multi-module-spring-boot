@@ -30,5 +30,4 @@ public interface UserMapper {
     @Delete("DELETE FROM sys_user WHERE uid =#{id}")
     long delete(Long id);
 
-
 }
