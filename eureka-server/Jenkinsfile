@@ -3,7 +3,7 @@ pipeline{
     stages {
         stage('Build') {
             steps {
-                echo 'Building eureka server to test env test master '
+                echo 'Building eureka server to test env test master  '
                 sh 'pwd'
             }
         }
