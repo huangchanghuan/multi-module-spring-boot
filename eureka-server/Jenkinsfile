@@ -4,6 +4,7 @@ pipeline{
         stage('Build') {
             steps {
                 echo 'Building eureka server to test env new old'
+                sh 'cd eureka-server'
                 sh 'pwd'
             }
         }
