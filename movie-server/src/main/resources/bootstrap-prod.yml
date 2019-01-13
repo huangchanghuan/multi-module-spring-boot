@@ -1,12 +1,13 @@
+#zookeeper配置中心
 spring:
   cloud:
-    config:
-      name: movie-server
-      profile: prod
-      label: master
-      discovery:
-        enabled: true
-        serviceId: config-server
+    zookeeper:
+      connect-string: 192.168.13.180:2181,192.168.13.181:2181,192.168.13.182:2181
+      config:
+        root: /springboot/config/dev
+      enabled: true
+
+
 server:
   port: 8082
 eureka:

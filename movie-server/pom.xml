@@ -24,6 +24,9 @@
         <java.version>1.8</java.version>
         <spring-cloud.version>Finchley.SR1</spring-cloud.version>
         <docker.image.prefix>sunstardocker</docker.image.prefix><!--配置镜像仓库的属性-->
+        <!-- SERVER ON A REMOTE HOST -->
+        <sonar.host.url>http://192.168.13.183:9000</sonar.host.url>
+        <sonar.login>c089e8896356040a14803ed7f3d15367dbac1010</sonar.login>
     </properties>
 
     <dependencies>
@@ -111,9 +114,6 @@
         </dependency>
     </dependencies>
 
-
-
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -125,8 +125,28 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
     <build>
         <plugins>
+            <!--code review 插件-->
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.6.0.1398</version>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.8</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <!--spring boot maven插件-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>

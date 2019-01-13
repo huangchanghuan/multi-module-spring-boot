@@ -1,12 +1,11 @@
 spring:
   cloud:
-    config:
-      name: movie-server
-      profile: test
-      label: master
-      discovery:
-        enabled: true
-        serviceId: config-server
+    zookeeper:
+      connect-string: 192.168.13.180:2181,192.168.13.181:2181,192.168.13.182:2181
+      config:
+        root: /springboot/config/test
+      enabled: true
+
 server:
   port: 8082
 eureka:
