@@ -4,9 +4,11 @@ pipeline{
         stage('Build') {
             steps {
                 echo 'Building eureka server to test env new old'
+
                 sh 'pwd'
                 cd eureka-server
-                sh 'pwd'
+
+                sh '/usr/local/maven-3.3.9/bin/mvn clean package docker:build -pl eureka-server -DpushImage -Dmaven.test.skip=true '
             }
         }
         stage('Test') {

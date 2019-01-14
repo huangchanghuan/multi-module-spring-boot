@@ -2,8 +2,7 @@ package com.yimi.product;
 
 import com.yimi.product.web.UserControllerV001;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +15,30 @@ import org.springframework.web.context.WebApplicationContext;
 public class SpringBootUserApplicationTests {
     @Autowired
     private WebApplicationContext context;
-    @Before
-    public void setup() {
-        RestAssuredMockMvc.webAppContextSetup(context);
-//        RestAssuredMockMvc.standaloneSetup(new UserControllerV001());
+
+    @BeforeClass
+    public void beforeAllTest(){
+
     }
-    @Test
+
+    @AfterClass
+    public void afterAllTest(){
+
+    }
+
+    @Before
+    public void beforeEveryTest() {
+        RestAssuredMockMvc.webAppContextSetup(context);
+    }
+
+    @After
+    public void afterEveryTest() {
+
+    }
+
+
+    @Test(timeout = 1000)
+    @Ignore("not ready yet")
     public void contextLoads() {
         System.out.println("another test");
     }

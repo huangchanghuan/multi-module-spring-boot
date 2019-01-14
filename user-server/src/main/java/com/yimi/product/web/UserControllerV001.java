@@ -43,7 +43,7 @@ public class UserControllerV001 {
     public ServiceResult<SysUser> searchById(long uid) {
         logger.info("根据id查询用户{}", uid);
         SysUser sysUser = userService.getUser(uid);
-        logger.info("根据查询用户{}", uid);
+        logger.info("根据查询用户{}", sysUser.toString());
         return new ServiceResult<SysUser>(Boolean.TRUE, sysUser);
     }
 
