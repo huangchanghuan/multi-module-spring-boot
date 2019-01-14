@@ -5,7 +5,7 @@ pipeline{
             steps {
                 echo 'Building eureka server'
                 sh 'pwd'
-                cd eureka-server
+                cd 'eureka-server'
                 sh 'pwd'
             }
         }
