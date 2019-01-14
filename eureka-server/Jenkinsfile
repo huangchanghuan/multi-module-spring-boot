@@ -13,7 +13,7 @@ pipeline{
                     '''
                 sh 'pwd'
                 sh 'whoami'
-                sh '''ssh root@192.168.13.182  'ls' '''
+                sh '''ssh root@192.168.13.182  'ls'  '''
             }
         }
         stage('Test') {
