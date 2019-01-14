@@ -13,7 +13,7 @@ pipeline{
                     '''
                 sh 'pwd'
                 sh 'whoami'
-                sh '''ssh root@192.168.13.182  'ls'  '''
+
             }
         }
         stage('Test') {
@@ -29,6 +29,7 @@ pipeline{
         stage('Deploy') {
             steps{
                 echo 'This is a deploy step'
+                sh '''ssh root@192.168.13.182  'docker service ls'  '''
             }
         }
     }
