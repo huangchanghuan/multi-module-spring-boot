@@ -1,5 +1,7 @@
 pipeline{
-    agent any
+    agent
+    -Build
+
     stages {
         stage('Build') {
             steps {
@@ -16,6 +18,11 @@ pipeline{
         stage('Test') {
             steps{
                 echo 'This is a test step'
+            }
+        }
+        stage('docker') {
+            steps{
+                echo 'This is a docker step'
             }
         }
         stage('Deploy') {
