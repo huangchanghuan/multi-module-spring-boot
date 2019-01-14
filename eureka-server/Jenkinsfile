@@ -12,6 +12,7 @@ pipeline{
                     pwd
                     '''
                 sh 'pwd'
+                sh 'whoami'
             }
         }
         stage('Test') {
