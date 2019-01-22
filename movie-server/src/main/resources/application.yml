@@ -8,9 +8,9 @@ spring:
         - 10.0
       ignored-interfaces:
         - eth0
-    bus:
-      trace:
-        enabled: true
+#    bus:
+#      trace:
+#        enabled: true
   rabbitmq:
     host: 192.168.13.48
     port: 5672

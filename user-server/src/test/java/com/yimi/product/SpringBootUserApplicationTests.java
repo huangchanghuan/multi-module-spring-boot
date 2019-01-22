@@ -17,12 +17,12 @@ public class SpringBootUserApplicationTests {
     private WebApplicationContext context;
 
     @BeforeClass
-    public void beforeAllTest(){
+    public static void beforeAllTest(){
 
     }
 
     @AfterClass
-    public void afterAllTest(){
+    public static void afterAllTest(){
 
     }
 

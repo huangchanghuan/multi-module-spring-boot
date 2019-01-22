@@ -5,6 +5,8 @@ import com.yimi.product.dto.Result;
 import com.yimi.product.dto.ServiceResult;
 import com.yimi.product.entity.SysUser;
 import com.yimi.product.entity.User;
+import com.yimi.product.enums.ExceptionEnum;
+import com.yimi.product.exception.DescribeException;
 import com.yimi.product.service.UserService;
 import com.yimi.product.sos.version.ApiVersion;
 import org.slf4j.Logger;
@@ -30,6 +32,8 @@ public class UserControllerV001 {
     public Result world(@RequestParam String name) {
         Result result = new Result();
         System.out.println(name);
+        if (true)
+        throw new DescribeException(ExceptionEnum.AccountIsLocked);
         return result;
     }
 

@@ -48,6 +48,7 @@ public class TokenFilter extends ZuulFilter {
             e.printStackTrace();
         }
 
+        request.getUserPrincipal();
 
         String token = request.getParameter("token");// 获取请求的参数
 

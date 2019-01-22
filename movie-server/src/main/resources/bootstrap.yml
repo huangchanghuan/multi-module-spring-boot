@@ -2,6 +2,23 @@
 spring:
   application:
     name: movie-server
+  server:
+  #嵌入tomcat配置
+    port: 8089
+    #和CPU数
+    acceptorThreadCount: 4
+    minSpareThreads: 50
+    maxSpareThreads: 50
+    maxThreads: 1000
+    maxConnections: 10000
+    #10秒超时
+    connectionTimeout: 10000
+    protocol: org.apache.coyote.http11.Http11Nio2Protocol
+    redirectPort: 443
+    compression: on
+    #文件请求大小
+    MaxFileSize: 300MB
+    MaxRequestSize: 500MB
 #  cloud:
 #    config:
 #      name: movie-server

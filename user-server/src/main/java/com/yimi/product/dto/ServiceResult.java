@@ -17,7 +17,12 @@ public class ServiceResult<T> {
         this.success = success;
         this.data = data;
     }
-
+    public ServiceResult(boolean success, T data,String code) {
+        super();
+        this.success = success;
+        this.data = data;
+        this.code=code;
+    }
     public ServiceResult(boolean success, String code) {
         super();
         this.success = success;

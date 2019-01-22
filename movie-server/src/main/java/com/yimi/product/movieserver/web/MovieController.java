@@ -2,6 +2,9 @@ package com.yimi.product.movieserver.web;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import com.netflix.hystrix.contrib.javanica.command.AsyncResult;
 import com.yimi.product.movieserver.dto.Result;
 import com.yimi.product.movieserver.dto.ServiceResult;
 import com.yimi.product.movieserver.entity.SysUser;
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 @RestController
 @RequestMapping("/movie")//url:/项目/模块/资源/{id}/细分  seckill/list
@@ -60,7 +65,7 @@ public class MovieController {
      */
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     @ResponseBody
-    public String hello() {
+    public String hello() throws ExecutionException, InterruptedException {
 //        System.out.println("远程服务获取结果:");
         logger.info("request two name is 2");
 //        try{
@@ -103,5 +108,56 @@ public class MovieController {
     public ServiceResult<List<SysUser>> searchAll1() {
 //        System.out.println("远程服务获取结果:");
         return userRemote.searchAll1();
+    }
+
+    @RequestMapping(value = "/testHystrixCommand", method = RequestMethod.GET)
+    @ResponseBody
+    @HystrixCommand(groupKey="UserGroup", commandKey = "testHystrixCommand",
+            commandProperties = {
+                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "500")
+            },
+            threadPoolProperties = {
+                    @HystrixProperty(name = "coreSize", value = "2"),
+                    @HystrixProperty(name = "maxQueueSize", value = "2"),
+                    @HystrixProperty(name = "keepAliveTimeMinutes", value = "2"),
+                    @HystrixProperty(name = "queueSizeRejectionThreshold", value = "15"),
+                    @HystrixProperty(name = "metrics.rollingStats.numBuckets", value = "12"),
+                    @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "1440")
+            })
+    public String testHystrix(){
+        System.out.println("线程名: "+Thread.currentThread().getName());
+        return Thread.currentThread().getName();
+    }
+
+
+    @RequestMapping(value = "/testHystrix1Command", method = RequestMethod.GET)
+    @ResponseBody
+    @HystrixCommand(groupKey="UserGroup1", commandKey = "testHystrix1Command",
+            commandProperties = {
+                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "500"),
+//                    @HystrixProperty(name = "execution.isolation.strategy",value = "THREAD")
+            },
+            threadPoolProperties = {
+                    @HystrixProperty(name = "coreSize", value = "2"),
+                    @HystrixProperty(name = "maxQueueSize", value = "2"),
+                    @HystrixProperty(name = "keepAliveTimeMinutes", value = "2"),
+                    @HystrixProperty(name = "queueSizeRejectionThreshold", value = "15"),
+                    @HystrixProperty(name = "metrics.rollingStats.numBuckets", value = "12"),
+                    @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "1440")
+            })
+    public Future<String> testHystrixFuture(){
+        return new AsyncResult<String>() {
+            @Override
+            public String invoke() {
+                System.out.println("hystrix线程名: "+Thread.currentThread().getName());
+                return Thread.currentThread().getName();
+            }
+            // 重写了 get 方法
+            @Override
+            public String get() {
+                return invoke();
+            }
+        };
+
     }
 }
