@@ -15,13 +15,18 @@ import java.util.Map;
 public class HomeController {
     @RequestMapping({"/","/index"})
     @ResponseBody
-    public SysUser index(){
+    public SysUser index(HttpServletRequest request){
         System.out.println("登录成功!");
+        System.out.println("getUserPrincipal() : "+request.getUserPrincipal());
+        System.out.println("getUserPrincipal() name : "+request.getUserPrincipal().getName());
         //获取当前用户信息
         SysUser user= (SysUser) SecurityUtils.getSubject().getPrincipal();
         System.out.println("获取成功登录后的用户名:"+user.toString());
         //返回json格式
-        return new SysUser();
+        SysUser sysUser = new SysUser();
+        sysUser.setName(user.getName());
+        sysUser.setUid(user.getUid());
+        return sysUser;
     }
 
     @RequestMapping("/login")

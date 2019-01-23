@@ -2,7 +2,6 @@ package com.yimi.product.mapper;
 
 
 import com.yimi.product.entity.SysUser;
-import com.yimi.product.enums.UserSexEnum;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

@@ -13,9 +13,9 @@ public class SysRole {
     private Boolean available = Boolean.FALSE; // 是否可用,如果不可用将不会添加给用户
 
     //角色 -- 权限关系：多对多关系;
-    //@ManyToMany(fetch= FetchType.EAGER)
-    //@JoinTable(name="SysRolePermission",joinColumns={@JoinColumn(name="roleId")},inverseJoinColumns={@JoinColumn(name="permissionId")})
-    //private List<SysPermission> permissions;
+    @ManyToMany(fetch= FetchType.EAGER)
+    @JoinTable(name="SysRolePermission",joinColumns={@JoinColumn(name="roleId")},inverseJoinColumns={@JoinColumn(name="permissionId")})
+    private List<SysPermission> permissions;
 
     // 用户 - 角色关系定义;
     @ManyToMany
@@ -54,13 +54,13 @@ public class SysRole {
         this.available = available;
     }
 
-    //public List<SysPermission> getPermissions() {
-    //    return permissions;
-    //}
-    //
-    //public void setPermissions(List<SysPermission> permissions) {
-    //    this.permissions = permissions;
-    //}
+    public List<SysPermission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<SysPermission> permissions) {
+        this.permissions = permissions;
+    }
 
     public List<SysUser> getUserInfos() {
         return userInfos;
