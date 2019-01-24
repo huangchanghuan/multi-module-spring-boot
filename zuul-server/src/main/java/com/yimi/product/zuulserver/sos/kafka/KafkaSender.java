@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
-@Component
+//@Component
 public class KafkaSender<T> {
 
     private Logger logger = LoggerFactory.getLogger(KafkaSender.class);

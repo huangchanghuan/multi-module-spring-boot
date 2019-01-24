@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -33,6 +34,14 @@ public class MovieController {
 
     @Value("${server.config.hello}") //这里要不要进行实体封装
     private String hello;
+
+
+    @GetMapping("/demo")
+    @PreAuthorize("hasAuthority('userInfo:add')")
+    public String getDemo(){
+        return "good";
+    }
+
 
     @GetMapping("/classes")
     public Result hello(@RequestParam String name) {

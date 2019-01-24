@@ -1,5 +1,7 @@
 package com.yimi.product;
 
+import com.yimi.product.entity.SysUser;
+import com.yimi.product.mapper.UserMapper;
 import com.yimi.product.web.UserControllerV001;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.*;
@@ -15,6 +17,9 @@ import org.springframework.web.context.WebApplicationContext;
 public class SpringBootUserApplicationTests {
     @Autowired
     private WebApplicationContext context;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @BeforeClass
     public static void beforeAllTest(){
@@ -42,5 +47,10 @@ public class SpringBootUserApplicationTests {
     public void contextLoads() {
         System.out.println("another test");
     }
-
+    @Test
+    public void testLazyMybatis() {
+        SysUser sysUser=userMapper.findByUsername("admin");
+        System.out.println(sysUser.getRoleList().size());
+        System.out.println(sysUser.getRoleList().get(0).getPermissions().size());
+    }
 }

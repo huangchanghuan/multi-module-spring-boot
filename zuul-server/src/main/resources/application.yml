@@ -9,30 +9,30 @@ spring:
     inetutils:
       preferred-networks:
         - 10.0
-  kafka:
-    # 指定kafka 代理地址，可以多个
-    bootstrap-servers: 192.168.13.48:9092
-    producer:
-      retries: 2
-      # 每次批量发送消息的数量
-      batch-size: 16384
-      # 缓存容量
-      buffer-memory: 33554432
-      # 指定消息key和消息体的编解码方式
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
-    consumer:
-      # 指定默认消费者group id
-      group-id: consumer-tutorial
-#      auto-commit-interval:
-      auto-offset-reset: earliest
-      enable-auto-commit: true
-      # 指定消息key和消息体的编解码方式
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-    # 指定listener 容器中的线程数，用于提高并发量
-    listener:
-      concurrency: 1
+#  kafka:
+#    # 指定kafka 代理地址，可以多个
+#    bootstrap-servers: 192.168.13.48:9092
+#    producer:
+#      retries: 2
+#      # 每次批量发送消息的数量
+#      batch-size: 16384
+#      # 缓存容量
+#      buffer-memory: 33554432
+#      # 指定消息key和消息体的编解码方式
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+#    consumer:
+#      # 指定默认消费者group id
+#      group-id: consumer-tutorial
+##      auto-commit-interval:
+#      auto-offset-reset: earliest
+#      enable-auto-commit: true
+#      # 指定消息key和消息体的编解码方式
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#    # 指定listener 容器中的线程数，用于提高并发量
+#    listener:
+#      concurrency: 1
 
 
   zipkin:
@@ -57,6 +57,17 @@ eureka:
 
 #是否开启重试功能
 zuul:
+  routes:
+    uaa:
+      path: /uaa/**
+      sensitiveHeaders:
+      serviceId: user-server
+    order:
+      path: /movie-server/**
+      sensitiveHeaders:
+      serviceId: movie-server
+#    add-proxy-headers: true
+
   retryable: true
   #对当前服务的重试次数
 ribbon:
@@ -64,6 +75,15 @@ ribbon:
   #切换相同Server的次数
   MaxAutoRetriesNextServer: 1
 
+security:
+  oauth2:
+    client:
+      access-token-uri: http://localhost:8781/uaa/oauth/token
+      user-authorization-uri: http://localhost:8781/uaa/oauth/authorize
+      client-id: webapp
+    resource:
+      user-info-uri: http://localhost:8781/uaa/v001/user/user
+      prefer-token-info: false
 
   #监控
 management:
@@ -82,7 +102,9 @@ logging:
     root: info
 #mysql 日志
 #logging.level.com.yimi.product.mapper=DEBUG
+logging.level.org.springframework.security: DEBUG
 
+logging.leve.org.springframework: DEBUG
 #路由规则
 
 #kafka 配置

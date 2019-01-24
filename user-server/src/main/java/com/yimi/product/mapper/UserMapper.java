@@ -3,6 +3,7 @@ package com.yimi.product.mapper;
 
 import com.yimi.product.entity.SysUser;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
 
 import java.util.List;
 
@@ -13,6 +14,17 @@ public interface UserMapper {
 
     @Select("SELECT username,password FROM sys_user WHERE uid = #{id}")
     SysUser getOne(Long id);
+
+    @Select("SELECT * FROM sys_user WHERE username = #{username}")
+    @Results({
+            @Result(column="uid",property="roleList",
+                    many=@Many(
+                            select="com.yimi.product.mapper.RoleMapper.getAllRolesByUid",
+                            fetchType= FetchType.LAZY
+                    )
+            )
+    })
+    SysUser findByUsername(String username);
 
     @Insert("INSERT INTO sys_user(name,password,username,state) VALUES(#{name}, #{password}, #{username},1)")
     boolean insert(SysUser user);

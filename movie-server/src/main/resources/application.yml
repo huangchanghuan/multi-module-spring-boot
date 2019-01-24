@@ -76,7 +76,13 @@ ribbon:
   ReadTimeout: 120000
   ConnectTimeout: 30000 #请求连接的超时时间
 
-
+security:
+  oauth2:
+    resource:
+      id: movie-server
+      user-info-uri: http://localhost:8781/uaa/v001/user/user
+#      user-info-uri: http://localhost:8081/v001/user/user
+      prefer-token-info: false
 
   #log
 logging:
@@ -85,3 +91,4 @@ logging:
 
 #mysql 日志
 #logging.level.com.yimi.product.mapper=DEBUG
+logging.level.org.springframework.security: DEBUG

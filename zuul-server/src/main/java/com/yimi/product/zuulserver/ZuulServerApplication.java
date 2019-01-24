@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +21,7 @@ import java.util.Optional;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableZuulProxy
+//@EnableOAuth2Sso
 public class ZuulServerApplication {
     private Logger logger = LoggerFactory.getLogger(ZuulServerApplication.class);
     public static void main(String[] args) {
@@ -38,7 +40,7 @@ public class ZuulServerApplication {
      * @param record
      * @param topic  topic
      */
-    @KafkaListener(id = "tut", topics = "filebeat",groupId = "firstGroup")//消费组id
+//    @KafkaListener(id = "tut", topics = "filebeat",groupId = "firstGroup")//消费组id
     public void listen(ConsumerRecord<?, ?> record, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
         //判断是否NULL
         Optional<?> kafkaMessage = Optional.ofNullable(record.value());
@@ -58,7 +60,7 @@ public class ZuulServerApplication {
      * @param record
      * @param topic  topic
      */
-    @KafkaListener(id = "tut1", topics = "filebeat",groupId = "firstGroup")//消费组id
+//    @KafkaListener(id = "tut1", topics = "filebeat",groupId = "firstGroup")//消费组id
     public void listen1(ConsumerRecord<?, ?> record, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
         //判断是否NULL
         Optional<?> kafkaMessage = Optional.ofNullable(record.value());
