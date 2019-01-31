@@ -47,8 +47,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .successHandler(MySavedRequestAwareAuthenticationSuccessHandler)//  登录页
                 .failureUrl("/login-error.html").permitAll();
         http.logout().logoutUrl("/logout").logoutSuccessUrl("/login.html");
-
-
     }
     @Override
     public void configure(WebSecurity web) throws Exception {

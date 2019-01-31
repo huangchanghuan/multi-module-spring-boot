@@ -9,6 +9,10 @@ spring:
     inetutils:
       preferred-networks:
         - 10.0
+  redis:
+    host: 192.168.13.48
+  aop:
+    proxy-target-class: true
 #  kafka:
 #    # 指定kafka 代理地址，可以多个
 #    bootstrap-servers: 192.168.13.48:9092
@@ -54,21 +58,53 @@ eureka:
     prefer-ip-address: true #注册中心,注册的是ip
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
 
-
-#是否开启重试功能
 zuul:
+#是否开启重试功能
+  ratelimit:
+    key-prefix: PREFIX
+    enabled: true
+    repository: REDIS
+    behind-proxy: true
+    default-policy-list: #optional - will apply unless specific policy exists
+    - limit: 2000 #optional - request number limit per refresh interval window
+      quota: 1000 #optional - request time limit per refresh interval window (in seconds)
+      refresh-interval: 60 #default value (in seconds)
+      type: #optional
+      - user
+#      - origin
+#      - url
+#      - httpmethod
+    policy-list:
+      movie-server:
+      - limit: 10 #optional - request number limit per refresh interval window
+        quota: 100 #optional - request time limit per refresh interval window (in seconds)
+        refresh-interval: 60 #default value (in seconds)
+        type: #optional
+#        - user
+#        - origin
+        - url=/api
+#      - type: #optional value for each type
+#        - user=anonymous
+#        - origin=somemachine.com
+#        - url=/api #url prefix
+#        - role=user
+#        - httpmethod=get #case insensitive
+
+
   routes:
-    uaa:
+    user-server:
       path: /uaa/**
       sensitiveHeaders:
       serviceId: user-server
-    order:
+    movie-server:
       path: /movie-server/**
       sensitiveHeaders:
       serviceId: movie-server
-#    add-proxy-headers: true
-
+  #    add-proxy-headers: true
   retryable: true
+
+
+
   #对当前服务的重试次数
 ribbon:
   MaxAutoRetries: 0
@@ -78,12 +114,13 @@ ribbon:
 security:
   oauth2:
     client:
-      access-token-uri: http://localhost:8781/uaa/oauth/token
-      user-authorization-uri: http://localhost:8781/uaa/oauth/authorize
+      access-token-uri: http://localhost:8081/oauth/token
+      user-authorization-uri: http://localhost:8081/oauth/authorize
       client-id: webapp
     resource:
-      user-info-uri: http://localhost:8781/uaa/v001/user/user
+      user-info-uri: http://localhost:8081/v001/user/user
       prefer-token-info: false
+
 
   #监控
 management:

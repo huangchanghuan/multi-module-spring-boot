@@ -17,7 +17,10 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -38,7 +41,7 @@ public class MovieController {
 
     @GetMapping("/demo")
     @PreAuthorize("hasAuthority('userInfo:add')")
-    public String getDemo(){
+    public String getDemo(HttpServletRequest request, Principal principal){
         return "good";
     }
 

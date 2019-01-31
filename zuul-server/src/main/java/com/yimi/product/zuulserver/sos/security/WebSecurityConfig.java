@@ -1,5 +1,8 @@
 package com.yimi.product.zuulserver.sos.security;
 
+import com.marcosbarbero.cloud.autoconfigure.zuul.ratelimit.config.RateLimitUtils;
+import com.marcosbarbero.cloud.autoconfigure.zuul.ratelimit.config.properties.RateLimitProperties;
+import com.yimi.product.zuulserver.sos.ratelimit.MySecuredRateLimitUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Bean;
@@ -22,9 +25,7 @@ import org.springframework.security.data.repository.query.SecurityEvaluationCont
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
         http.csrf().disable();
-
     }
 }
 

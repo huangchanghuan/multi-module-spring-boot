@@ -80,8 +80,7 @@ security:
   oauth2:
     resource:
       id: movie-server
-      user-info-uri: http://localhost:8781/uaa/v001/user/user
-#      user-info-uri: http://localhost:8081/v001/user/user
+      user-info-uri: http://localhost:8081/v001/user/user
       prefer-token-info: false
 
   #log
