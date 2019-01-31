@@ -18,6 +18,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     /**
      * 是否需要验证access token有效
      * ratelimit 需要权限的要经过这里,性能优化点,MysecurityRateLimitUtil 直接获取
+     *
+     * 作为网关,需要所有鉴权放网关的话,这里需要实现自动配置? 读取所有权限表数据 (url'requestmapping' : 权限)
+     *
      * @param http
      * @throws Exception
      */
