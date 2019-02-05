@@ -30,7 +30,7 @@ management:
   #log
 logging:
   level:
-    root: info
+    root: error
 #mysql 日志
 #logging.level.com.yimi.product.mapper=DEBUG
 

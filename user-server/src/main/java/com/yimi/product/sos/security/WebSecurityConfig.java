@@ -3,6 +3,7 @@ package com.yimi.product.sos.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -20,6 +21,7 @@ import org.springframework.security.data.repository.query.SecurityEvaluationCont
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)  //  启用方法级别的权限认证
+@Order(2)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomUserService customUserService;
@@ -29,24 +31,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(customUserService).passwordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder());
     }
 
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                // 关闭csrf保护功能（跨域访问）
-//                .csrf().disable()
-//                .authorizeRequests()
-//                    .antMatchers("/oauth/**").permitAll()
-//                    .antMatchers("/**/*.js", "/**/*.css", "/**/*.png",
-//                            "/**/*.gif", "/**/*.jpg", "/**/*.jpeg", "/**/*.map",
-//                            "/**/*.ico").permitAll()
-//                    .anyRequest().authenticated()
-//                    .and()
-//                .formLogin()
-//                .loginPage("/login.html")
-//                .defaultSuccessUrl("/success.html")
-//                .failureUrl("/login-error.html").permitAll();
-//        http.logout().logoutUrl("/logout").logoutSuccessUrl("/login.html");
-//    }
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                // 关闭csrf保护功能（跨域访问）
+                .csrf().disable()
+                .authorizeRequests()
+                    .antMatchers("/oauth/**").permitAll()
+                    .antMatchers("/**/*.js", "/**/*.css", "/**/*.png",
+                            "/**/*.gif", "/**/*.jpg", "/**/*.jpeg", "/**/*.map",
+                            "/**/*.ico").permitAll()
+                    .anyRequest().authenticated()
+                    .and()
+                .formLogin()
+                .loginPage("/login.html")
+                .defaultSuccessUrl("/success.html")
+                .failureUrl("/login-error.html").permitAll();
+        http.logout().logoutUrl("/logout").logoutSuccessUrl("/login.html");
+    }
 
     @Bean
     public SecurityEvaluationContextExtension securityEvaluationContextExtension() {

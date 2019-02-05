@@ -13,7 +13,7 @@ public class AuthInteceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
-//        System.out.println("URI: " + request.getRequestURI());
+        System.out.println("URI: " + request.getRequestURI());
         return true;
     }
 

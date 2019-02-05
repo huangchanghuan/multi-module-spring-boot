@@ -38,11 +38,10 @@ public class UserControllerV001 {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/hello")
+    @ResponseBody
     public Result world(@RequestParam String name) {
         Result result = new Result();
         System.out.println(name);
-        if (true)
-        throw new DescribeException(ExceptionEnum.AccountIsLocked);
         return result;
     }
 
