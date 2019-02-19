@@ -90,7 +90,6 @@ zuul:
 #        - role=user
 #        - httpmethod=get #case insensitive
 
-
   routes:
     user-server:
       path: /uaa/**
