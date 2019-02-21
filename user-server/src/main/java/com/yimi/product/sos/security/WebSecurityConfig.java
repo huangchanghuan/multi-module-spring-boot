@@ -21,7 +21,7 @@ import org.springframework.security.data.repository.query.SecurityEvaluationCont
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)  //  启用方法级别的权限认证
-@Order(2)
+//@Order(2)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomUserService customUserService;

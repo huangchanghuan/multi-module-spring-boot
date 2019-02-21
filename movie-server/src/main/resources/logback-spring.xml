@@ -44,7 +44,8 @@
                         "pid": "${PID:-}",
                         "thread": "%thread",
                         "class": "%logger{40}",
-                        "rest": "%message"
+                        "rest": "%message",
+                        "line": "%L"
                         }
                     </pattern>
                 </pattern>
@@ -59,7 +60,7 @@
 
     <root level="INFO">
         <appender-ref ref="console"/>
-        <!--<appender-ref ref="logstash"/>-->
+        <appender-ref ref="logstash"/>
         <!--<appender-ref ref="tcpLogstash"/>-->
     </root>
 </configuration>

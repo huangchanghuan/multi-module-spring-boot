@@ -80,9 +80,10 @@ zuul:
         quota: 100 #optional - request time limit per refresh interval window (in seconds)
         refresh-interval: 60 #default value (in seconds)
         type: #optional
-#        - user
+        - user
 #        - origin
-        - url=/api
+#        - url=/api
+        - url
 #      - type: #optional value for each type
 #        - user=anonymous
 #        - origin=somemachine.com

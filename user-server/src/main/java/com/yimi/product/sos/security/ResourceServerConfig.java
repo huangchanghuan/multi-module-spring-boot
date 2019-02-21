@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Configuration
 @EnableResourceServer
-@Order(3)
+//@Order(3)
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
@@ -28,4 +28,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers("/v001/user/user").authenticated()
                 .anyRequest().authenticated().and().httpBasic();
     }
+
+
 }
