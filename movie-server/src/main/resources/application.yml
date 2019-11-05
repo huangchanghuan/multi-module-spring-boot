@@ -1,30 +1,30 @@
 
 
 #注册中心的服务名
-spring:
-  cloud:
-    inetutils:
-      preferred-networks:
-        - 10.0
-      ignored-interfaces:
-        - eth0
+#spring:
+#  cloud:
+#    inetutils:
+#      preferred-networks:
+#        - 10.0
+#      ignored-interfaces:
+#        - eth0
 #    bus:
 #      trace:
 #        enabled: true
-  rabbitmq:
-    host: 192.168.13.48
-    port: 5672
-    username: root
-    password: 7746595
-  zipkin:
-    sender:
-      type: web
-    base-url: http://192.168.13.48:9411
-    enabled: true
-    discoveryClientEnabled: true
-  sleuth:
-    sampler:
-      probability: 1.0
+#  rabbitmq:
+#    host: 192.168.13.48
+#    port: 5672
+#    username: root
+#    password: 7746595
+#  zipkin:
+#    sender:
+#      type: web
+#    base-url: http://192.168.13.48:9411
+#    enabled: true
+#    discoveryClientEnabled: true
+#  sleuth:
+#    sampler:
+#      probability: 1.0
 #    traceId128: truex`
 
 
@@ -41,52 +41,58 @@ spring:
 
 
   #监控
-management:
-  endpoints:
-    web:
-      base-path: /actuator
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      show-details: always
+#management:
+#  endpoints:
+#    web:
+#      base-path: /actuator
+#      exposure:
+#        include: "*"
+#  endpoint:
+#    health:
+#      show-details: always
 
 #熔断器生效
-feign:
-  hystrix:
-    enabled: true
+#feign:
+#  hystrix:
+#    enabled: true
   #熔断超时时间
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 30000
-      circuitBreaker:
-        errorThresholdPercentage: 99   #熔断百分比
-  threadpool:   #线程池
-    default:
-      coreSize: 10
-      maxQueueSize: 1000   #熔断队列
-      queueSizeRejectionThreshold: 1000
-#hystrix.threadpool.default.queueSizeRejectionThreshold=100000
-#请求处理的超时时间
-ribbon:
-  ReadTimeout: 120000
-  ConnectTimeout: 30000 #请求连接的超时时间
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 30000
+#      circuitBreaker:
+#        errorThresholdPercentage: 99   #熔断百分比
+#  threadpool:   #线程池
+#    default:
+#      coreSize: 10
+#      maxQueueSize: 1000   #熔断队列
+#      queueSizeRejectionThreshold: 1000
+##hystrix.threadpool.default.queueSizeRejectionThreshold=100000
+##请求处理的超时时间
+#ribbon:
+#  ReadTimeout: 120000
+#  ConnectTimeout: 30000 #请求连接的超时时间
 
 security:
   oauth2:
+    client:
+      clientId: peter_client
+      clientSecret: peter_client
     resource:
       id: movie-server
-      user-info-uri: http://localhost:8081/v001/user/user
-      prefer-token-info: false
+      user-info-uri: http://localhost:8081/v001/user/useroUri
+      token-info-uri: http://localhost:8081/oauth/check_token
+#      prefer-token-info: false
+    authorization:
+      check-token-access: http://localhost:8081/oauth/check_token
 
   #log
-logging:
-  level:
-    root: info
+#logging:
+#  level:
+#    root: info
 
 #mysql 日志
 #logging.level.com.yimi.product.mapper=DEBUG

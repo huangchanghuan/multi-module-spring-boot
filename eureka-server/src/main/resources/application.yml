@@ -9,7 +9,9 @@ turbine:
 
 
 
-
+logging:
+  level:
+    root: info
 
 #eureka客户端ribbon刷新时间
 #默认30s

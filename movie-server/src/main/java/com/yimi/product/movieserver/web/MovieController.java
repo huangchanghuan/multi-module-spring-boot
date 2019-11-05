@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServlet;
@@ -35,16 +34,26 @@ public class MovieController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Value("${server.config.hello}") //这里要不要进行实体封装
+//    @Value("${server.config.hello}") //这里要不要进行实体封装
     private String hello;
 
 
     @GetMapping("/demo")
-    @PreAuthorize("hasAuthority('userInfo:add')")
+//    @PreAuthorize("hasAuthority('userInfo:add')")
     public String getDemo(HttpServletRequest request, Principal principal){
         return "good";
     }
 
+    /**
+     * 异步调用
+     * @param name
+     * @return
+     */
+    @GetMapping("/users/future")
+    public Result helloFuture(@RequestParam String name) throws ExecutionException, InterruptedException {
+        Future<Result> future=userRemote.usersFuture(name);
+        return future.get();
+    }
 
     @GetMapping("/classes")
     public Result hello(@RequestParam String name) {

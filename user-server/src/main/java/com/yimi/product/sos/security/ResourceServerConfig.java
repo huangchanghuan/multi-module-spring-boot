@@ -25,7 +25,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
             .and()
                 .authorizeRequests()
                 .antMatchers("/v001/user/hello").permitAll()
-                .antMatchers("/v001/user/user").authenticated()
+                .antMatchers("/v001/user/user")
+                .access("#oauth2.clientHasRole('econtract') and (hasRole('vip') or #oauth2.isClient()) and #oauth2.hasScope('api')")
                 .anyRequest().authenticated().and().httpBasic();
     }
 

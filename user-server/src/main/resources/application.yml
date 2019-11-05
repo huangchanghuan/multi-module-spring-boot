@@ -5,27 +5,27 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
     username: root
     password: Sunstar123!
-  redis:
-    host: 192.168.13.48
-  zipkin:
-    sender:
-      type: web
-    base-url: http://192.168.13.48:9411
-    enabled: true
-    discoveryClientEnabled: true
-  sleuth:
-    sampler:
-      probability: 1.0
+#  redis:
+#    host: 192.168.13.48
+#  zipkin:
+#    sender:
+#      type: web
+#    base-url: http://192.168.13.48:9411
+#    enabled: true
+#    discoveryClientEnabled: true
+#  sleuth:
+#    sampler:
+#      probability: 1.0
   #监控
-management:
-  endpoints:
-    web:
-      base-path: /actuator
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      show-details: always
+#management:
+#  endpoints:
+#    web:
+#      base-path: /actuator
+#      exposure:
+#        include: "*"
+#  endpoint:
+#    health:
+#      show-details: always
 
   #log
 logging:

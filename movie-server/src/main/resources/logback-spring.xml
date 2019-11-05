@@ -13,7 +13,7 @@
     <!-- 控制台Appender -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>INFO</level>
+            <level>debug</level>
         </filter>
         <encoder>
             <pattern>${CONSOLE_LOG_PATTERN}</pattern>
@@ -58,9 +58,9 @@
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder" />
     </appender>
 
-    <root level="INFO">
+    <root level="info">
         <appender-ref ref="console"/>
-        <appender-ref ref="logstash"/>
+        <!--<appender-ref ref="logstash"/>-->
         <!--<appender-ref ref="tcpLogstash"/>-->
     </root>
 </configuration>

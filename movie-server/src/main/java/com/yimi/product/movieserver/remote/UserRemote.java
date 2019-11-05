@@ -9,16 +9,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.concurrent.Future;
 
 /**
  * 远程调用服务
  */
-@FeignClient(name= "user-server")
+@FeignClient(name= "user-server",fallback = UserRemoteHystrix.class)
 public interface UserRemote {
-
+    /**
+     * 异步调用
+     * @param name
+     * @return
+     */
+    @RequestMapping(value = "/v001/user/hello", method = RequestMethod.GET)
+    Future<Result> usersFuture(@RequestParam("name") String name);
 
     @RequestMapping(value = "/v001/user/hello", method = RequestMethod.GET)
     Result users(@RequestParam("name") String name);
+
+
 
     /**
      *

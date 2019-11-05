@@ -3,7 +3,6 @@ package com.yimi.product.sos.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -54,7 +53,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
         return new SecurityEvaluationContextExtension();
     }
-
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        //会创建一个securityFilterChain
+        web.ignoring().antMatchers("/css/**");
+    }
     //不定义没有password grant_type
     @Override
     @Bean

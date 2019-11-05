@@ -24,7 +24,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
             .and()
                 .authorizeRequests()
-                .anyRequest().authenticated()
+                .anyRequest()
+                .access("(hasRole('vip') or #oauth2.isClient()) and #oauth2.hasScope('api')")
             .and()
                 .httpBasic();
     }

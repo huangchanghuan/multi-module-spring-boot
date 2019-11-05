@@ -1,9 +1,7 @@
 package com.yimi.product.web;
 
-import com.yimi.product.SpringBootUserApplicationTests;
 import com.yimi.product.entity.SysUser;
 import com.yimi.product.service.UserService;
-import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

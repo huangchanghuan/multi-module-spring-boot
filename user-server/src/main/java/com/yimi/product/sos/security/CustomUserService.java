@@ -18,7 +18,7 @@ import java.util.List;
 
 @Service
 public class CustomUserService implements UserDetailsService {
-
+    private String defaultRolePrefix = "ROLE_";
     @Autowired
     private UserMapper userMapper;
 
@@ -30,6 +30,7 @@ public class CustomUserService implements UserDetailsService {
         }
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         for (SysRole role : sysUser.getRoleList()) {
+            authorities.add(new SimpleGrantedAuthority(defaultRolePrefix+role.getRole()));
             for (SysPermission permission : role.getPermissions()) {
                 authorities.add(new SimpleGrantedAuthority(permission.getPermission()));
             }

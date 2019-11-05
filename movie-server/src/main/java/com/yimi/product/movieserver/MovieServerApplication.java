@@ -11,12 +11,12 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 @SpringBootApplication
-@EnableFeignClients
-@EnableHystrix
-@EnableHystrixDashboard
-@EnableCircuitBreaker
+//@EnableFeignClients
+//@EnableHystrix
+//@EnableHystrixDashboard
+//@EnableCircuitBreaker
 public class MovieServerApplication {
 
     public static void main(String[] args) {

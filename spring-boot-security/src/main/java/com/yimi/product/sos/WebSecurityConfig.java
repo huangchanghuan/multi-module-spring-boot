@@ -20,7 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @Date 2018-04-12  14:28
  */
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 @EnableGlobalMethodSecurity(prePostEnabled = true)  //  启用方法级别的权限认证
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
@@ -50,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     public void configure(WebSecurity web) throws Exception {
+        //会创建一个securityFilterChain
         web.ignoring().antMatchers("/css/**");
     }
 //    @Bean

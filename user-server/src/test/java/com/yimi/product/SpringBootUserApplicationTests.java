@@ -77,5 +77,3 @@ public class SpringBootUserApplicationTests {
         }
     }
 }
-
-interface  str extends Filter , Servlet{}

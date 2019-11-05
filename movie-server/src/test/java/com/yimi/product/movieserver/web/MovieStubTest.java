@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
 import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -27,6 +28,7 @@ public class MovieStubTest {
     private MockMvc mvc;
 
     @Test
+    @WithMockUser //解决control层权限问题
     public void testMethod() throws Exception {
         MvcResult mvcResult=mvc.perform(MockMvcRequestBuilders.get("/movie/classes").param("name", "zhangsan"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -36,10 +38,13 @@ public class MovieStubTest {
     }
 
     @Test
+//    @WithMockUser
     public void testSearchAll() throws Exception {
         MvcResult mvcResult=mvc.perform(MockMvcRequestBuilders.get("/movie/searchAll"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();// 返回执行请求的结果;
         System.out.println(mvcResult.getResponse().getContentAsString());
     }
+
+
 }

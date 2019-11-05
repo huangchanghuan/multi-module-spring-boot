@@ -8,12 +8,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Future;
 
 /**
  * 熔断fallback
  */
 @Component
 public class UserRemoteHystrix implements UserRemote{
+    @Override
+    public Future<Result> usersFuture(String name) {
+        return null;
+    }
+
     @Override
     public Result users(@RequestParam("name") String name) {
         Result result = new Result();

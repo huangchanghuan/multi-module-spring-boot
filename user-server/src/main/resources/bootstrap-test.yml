@@ -8,32 +8,32 @@
 #        enabled: true
 #        serviceId: config-server
 
-spring:
-  cloud:
-    inetutils:
-      preferred-networks:
-      - 10.0
-      #zookeeper配置中心
-    zookeeper:
-      connect-string: 192.168.13.180:2181,192.168.13.181:2181,192.168.13.182:2181
-      config:
-        root: /springboot/config/test
-      enabled: true
+#spring:
+#  cloud:
+#    inetutils:
+#      preferred-networks:
+#      - 10.0
+#      #zookeeper配置中心
+#    zookeeper:
+#      connect-string: 192.168.13.180:2181,192.168.13.181:2181,192.168.13.182:2181
+#      config:
+#        root: /springboot/config/test
+#      enabled: true
 
 
-eureka:
-  client:
-    registryFetchIntervalSeconds: 5 #eureka client刷新本地缓存时间
-    serviceUrl:
-      defaultZone: ${ADDITIONAL_EUREKA_SERVER_LIST} #最好每个实例不同顺序，按照离自己最近的Eureka地址放到最前面
-  instance:
-    hostname: user-server #约定和swarm服务名对应,其实没啥作用
-    prefer-ip-address: true #注册中心,注册的是ip
-    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
-    lease-expiration-duration-in-seconds: 15 #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除#注意，EurekaServer一定要设置eureka.server.eviction-interval-timer-in-ms否则这个配置无效，这个配置一般为服务刷新时间配置的三倍
-    lease-renewal-interval-in-seconds: 5 #服务刷新时间配置，每隔这个时间会主动心跳一次
-  server:
-    enableSelfPreservation: false #关闭自我保护
-
-ribbon:
-  ServerListRefreshInterval: 1000 #eureka客户端ribbon刷新时间
+#eureka:
+#  client:
+#    registryFetchIntervalSeconds: 5 #eureka client刷新本地缓存时间
+#    serviceUrl:
+#      defaultZone: ${ADDITIONAL_EUREKA_SERVER_LIST} #最好每个实例不同顺序，按照离自己最近的Eureka地址放到最前面
+#  instance:
+#    hostname: user-server #约定和swarm服务名对应,其实没啥作用
+#    prefer-ip-address: true #注册中心,注册的是ip
+#    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+#    lease-expiration-duration-in-seconds: 15 #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除#注意，EurekaServer一定要设置eureka.server.eviction-interval-timer-in-ms否则这个配置无效，这个配置一般为服务刷新时间配置的三倍
+#    lease-renewal-interval-in-seconds: 5 #服务刷新时间配置，每隔这个时间会主动心跳一次
+#  server:
+#    enableSelfPreservation: false #关闭自我保护
+#
+#ribbon:
+#  ServerListRefreshInterval: 1000 #eureka客户端ribbon刷新时间

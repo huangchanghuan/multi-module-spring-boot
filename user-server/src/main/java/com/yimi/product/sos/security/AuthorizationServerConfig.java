@@ -49,23 +49,28 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security
-                .tokenKeyAccess("permitAll()")
-                .checkTokenAccess("isAuthenticated()");
+                .tokenKeyAccess("permitAll()");
+//        security.checkTokenAccess("permitAll()");
+        security.checkTokenAccess("isAuthenticated()");
         // 允许表单认证
-//        security
-//                .allowFormAuthenticationForClients();
+        security
+                .allowFormAuthenticationForClients();
+
     }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
                 .withClient("android")
-                .scopes("xx")
+                .scopes("write","api")
+                .authorities("econtract")
                 .secret(PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("android"))
-                .authorizedGrantTypes("password", "authorization_code", "refresh_token")
+                .authorizedGrantTypes("password", "authorization_code", "refresh_token","client_credentials")
+                .accessTokenValiditySeconds(2592000)
             .and()
-                .withClient("webapp")
+                .withClient("peter_client")
+                .secret(PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("peter_client"))
                 .scopes("xx")
-                .authorizedGrantTypes("implicit");
+                .authorizedGrantTypes("password", "authorization_code", "refresh_token","client_credentials");
     }
 }
